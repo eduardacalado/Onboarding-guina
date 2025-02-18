@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@theme {
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 860px;
+  --breakpoint-lg: 1280px;
+
+  --color-brand-primary-light: #bdffe5;
+  --color-brand-primary-medium: #00d5ad;
+  --color-brand-primary-dark: #0b6c54;
+  --color-brand-primary-x-dark: #054434;
+
+  --color-brand-accessory-x-light: #e4f9f3;
+  --color-brand-accessory-light: #92e8cf;
+  --color-brand-accessory-medium: #00b79e;
+  --color-brand-accessory-beige: #fcf9f4;
+  --color-brand-accessory-red: #f11427;
+  --color-brand-accessory-magenta: #b51b76;
+
+  --color-white: #ffffff;
+  --color-gray-x-light: #f8f8f8;
+  --color-gray-light: #e3e3e3;
+  --color-gray-medium: #b5b5b5;
+  --color-gray-dark: #626262;
+  --color-gray-x-dark: #313131;
+  --color-gray-xx-dark: #121212;
+
+  --color-feedback-success-light: #daf1e2;
+  --color-feedback-success-medium: #379559;
+  --color-feedback-success-dark: #153822;
+
+  --color-feedback-warning-light: #fef3cd;
+  --color-feedback-warning-medium: #dfb623;
+  --color-feedback-warning-dark: #735a02;
+
+  --color-feedback-error-light: #f8d3d2;
+  --color-feedback-error-medium: #d42f28;
+  --color-feedback-error-dark: #7c1b18;
+  --color-feedback-error-x-dark: #450f0d;
+
+  --color-icons-lightbg-clicable: #313131;
+  --color-icons-lightbg-disable: #b5b5b5;
+  --color-icons-lightbg-information: #626262;
+
+  --color-icons-darkbg-selected: #ffffff;
+  --color-icons-darkbg-notSelected: #b5b5b5;
+  --color-icons-darkbg-information: #626262;
+
+  --radius-none: 0;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --font-primary: "Poppings", sans-serif;
+  --font-secondary: "Open Sans", sans-serif;
+
+  --font-size-xx-small: 14px;
+  --font-size-x-small: 16px;
+  --font-size-small: 18px;
+  --font-size-medium: 20px;
+  --font-size-large: 24px;
+  --font-size-x-large: 28px;
+  --font-size-xx-large: 40px;
+
+  --font-primary-regular: 400;
+  --font-primary-medium: 500;
+  --font-primary-semibold: 600;
+  --font-primary-bold: 700;
+
+  --font-secondary-regular: 400;
+  --font-secondary-semibold: 600;
+  --font-secondary-bold: 700;
+
+  --spacing-none: 0;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
