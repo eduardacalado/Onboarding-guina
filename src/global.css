@@ -30,6 +30,7 @@
   --color-feedback-success-light: #daf1e2;
   --color-feedback-success-medium: #379559;
   --color-feedback-success-dark: #153822;
+  --color-feedback-success-x-dark: #022b18;
 
   --color-feedback-warning-light: #fef3cd;
   --color-feedback-warning-medium: #dfb623;
@@ -47,6 +48,8 @@
   --color-icons-darkbg-selected: #ffffff;
   --color-icons-darkbg-notSelected: #b5b5b5;
   --color-icons-darkbg-information: #626262;
+
+  --color-cta: #a3da58;
 
   --radius-none: 0;
   --radius-xs: 4px;
