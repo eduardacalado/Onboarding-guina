@@ -2,7 +2,7 @@
 import { tv } from "tailwind-variants";
 
 export const buttonVariants = tv({
-  base: "h-10 w-47 px-4 py-2 rounded-sm font-medium font-semibold",
+  base: "h-xl w-xxl px-md py-sm rounded-sm font-medium font-semibold",
   variants: {
     variant: {
       primary:
