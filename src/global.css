@@ -87,3 +87,13 @@
   --spacing-xl: 40px;
   --spacing-xxl: 190px;
 }
+
+@layer utilities {
+  .border-sm {
+    border-width: 2px;
+  }
+
+  .border-lg {
+    border-width: 3px;
+  }
+}
