@@ -30,6 +30,7 @@
   --color-feedback-success-light: #daf1e2;
   --color-feedback-success-medium: #379559;
   --color-feedback-success-dark: #153822;
+  --color-feedback-success-x-dark: #022b18;
 
   --color-feedback-warning-light: #fef3cd;
   --color-feedback-warning-medium: #dfb623;
@@ -47,6 +48,8 @@
   --color-icons-darkbg-selected: #ffffff;
   --color-icons-darkbg-notSelected: #b5b5b5;
   --color-icons-darkbg-information: #626262;
+
+  --color-cta: #a3da58;
 
   --radius-none: 0;
   --radius-xs: 4px;
@@ -76,9 +79,21 @@
   --font-secondary-bold: 700;
 
   --spacing-none: 0;
+  --spacing-xxs: 2px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 190px;
+}
+
+@layer utilities {
+  .border-sm {
+    border-width: 2px;
+  }
+
+  .border-lg {
+    border-width: 3px;
+  }
 }
