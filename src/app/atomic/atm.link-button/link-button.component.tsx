@@ -9,7 +9,7 @@ type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 function LinkButton({
   variant = "link",
-  disabled = false,
+  disabled,
   children,
   path,
   ...props

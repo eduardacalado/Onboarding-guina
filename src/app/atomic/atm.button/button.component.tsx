@@ -13,7 +13,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 function Button({
   variant = "primary",
-  disabled = false,
+  disabled,
   children,
   ...props
 }: ButtonProps) {
