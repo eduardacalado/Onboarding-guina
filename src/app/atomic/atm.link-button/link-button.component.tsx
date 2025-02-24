@@ -1,23 +1,15 @@
 import { AnchorHTMLAttributes } from "react";
-import { buttonVariants } from "../atm.button/button.component.style";
-import { ArrowLeftIcon } from "../../assets/svg/arrow-left";
-import { ArrowRightIcon } from "../../assets/svg/arrow-right";
+import { linkButtonVariants } from "./link-button.component.style";
 
 type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   variant?: "link";
   disabled?: boolean;
   path: string;
-  hasIcon?: boolean;
-  iconName?: "ArrowRight" | "ArrowLeft";
-  iconPlace?: "left" | "right";
 };
 
-export function LinkButton({
+function LinkButton({
   variant = "link",
   disabled = false,
-  hasIcon = false,
-  iconName,
-  iconPlace,
   children,
   path,
   ...props
@@ -25,16 +17,12 @@ export function LinkButton({
   return (
     <a
       href={path}
-      className={buttonVariants({ variant, disabled, hasIcon })}
+      className={linkButtonVariants({ variant, disabled })}
       {...props}
     >
-      {hasIcon && iconPlace === "left" && iconName === "ArrowLeft" && (
-        <ArrowLeftIcon />
-      )}
       {children}
-      {hasIcon && iconPlace === "right" && iconName === "ArrowRight" && (
-        <ArrowRightIcon />
-      )}
     </a>
   );
 }
+
+export default LinkButton;

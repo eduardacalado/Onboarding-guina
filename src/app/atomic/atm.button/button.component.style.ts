@@ -2,7 +2,7 @@
 import { tv } from "tailwind-variants";
 
 export const buttonVariants = tv({
-  base: "h-xl w-xxl px-md py-sm rounded-sm font-medium font-semibold",
+  base: "flex gap-sm h-xl w-xxl px-md py-sm rounded-sm font-medium font-semibold",
   variants: {
     variant: {
       primary:
@@ -14,13 +14,9 @@ export const buttonVariants = tv({
       secondaryDestructive:
         "border border-sm border-feedback-error-medium text-feedback-error-medium hover:border-feedback-error-dark hover:text-feedback-error-dark focus:border-lg active:border-feedback-error-dark",
       cta: "bg-gray-x-dark border border-sm hover:bg-gray-dark text-white focus:border-gray-x-dark active:bg-gray-xx-dark",
-      link: "text-brand-primary-dark hover:underline focus:border focus:border-sm focus:border-brand-primary-dark active:text-brand-accessory-magenta",
     },
     disabled: {
       true: "opacity-50 pointer-events-none",
-    },
-    hasIcon: {
-      true: "flex items-center gap-sm",
     },
   },
   defaultVariants: {

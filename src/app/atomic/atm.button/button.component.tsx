@@ -7,12 +7,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | "secondary"
     | "primaryDestructive"
     | "secondaryDestructive"
-    | "link"
     | "cta";
   disabled?: boolean;
 };
 
-export function Button({
+function Button({
   variant = "primary",
   disabled = false,
   children,
@@ -24,3 +23,5 @@ export function Button({
     </button>
   );
 }
+
+export default Button;
