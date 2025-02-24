@@ -1,4 +1,3 @@
-// components/Button/styles.ts
 import { tv } from "tailwind-variants";
 
 export const buttonVariants = tv({
