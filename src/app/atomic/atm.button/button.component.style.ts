@@ -19,6 +19,9 @@ export const buttonVariants = tv({
     disabled: {
       true: "opacity-50 pointer-events-none",
     },
+    hasIcon: {
+      true: "flex items-center gap-sm",
+    },
   },
   defaultVariants: {
     variant: "primary",
