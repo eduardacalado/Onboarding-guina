@@ -50,6 +50,7 @@
   --color-icons-darkbg-information: #626262;
 
   --color-cta: #a3da58;
+  --color-cta-dark: #034224;
 
   --radius-none: 0;
   --radius-xs: 4px;
@@ -61,13 +62,16 @@
   --font-primary: "Poppings", sans-serif;
   --font-secondary: "Open Sans", sans-serif;
 
-  --font-size-xx-small: 14px;
-  --font-size-x-small: 16px;
-  --font-size-small: 18px;
-  --font-size-medium: 20px;
-  --font-size-large: 24px;
-  --font-size-x-large: 28px;
-  --font-size-xx-large: 40px;
+  --text-xx-small: 14px;
+  --text-x-small: 16px;
+  --text-small: 18px;
+  --text-medium: 20px;
+  --text-large: 24px;
+  --text-x-large: 28px;
+  --text-xx-large: 40px;
+
+  --line-height-sm: 120%;
+  --line-height-md: 150%;
 
   --font-primary-regular: 400;
   --font-primary-medium: 500;
