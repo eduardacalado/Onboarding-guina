@@ -2,7 +2,7 @@ import React, { ReactNode, JSX } from "react";
 import { typographyVariants } from "./typography.component.style";
 
 type TypographyProps = {
-  variant?:
+  variant:
     | "display"
     | "heading1"
     | "heading2"
@@ -15,13 +15,13 @@ type TypographyProps = {
     | "inputLabel"
     | "inputValue"
     | "inputCaption";
-  tag?: keyof JSX.IntrinsicElements;
+  tag: keyof JSX.IntrinsicElements;
   children: ReactNode;
 };
 
 function Text({
   variant = "display",
-  tag = "div",
+  tag = "p",
   children,
   ...props
 }: TypographyProps) {

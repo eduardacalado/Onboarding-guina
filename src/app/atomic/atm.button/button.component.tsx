@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { buttonVariants } from "./button.component.style";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?:
+  variant:
     | "primary"
     | "secondary"
     | "primaryDestructive"
