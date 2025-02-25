@@ -1,20 +1,8 @@
 import React, { ReactNode, JSX } from "react";
 import { typographyVariants } from "./typography.component.style";
+import { VariantProps } from "tailwind-variants";
 
-type TypographyProps = {
-  variant:
-    | "display"
-    | "heading1"
-    | "heading2"
-    | "heading3"
-    | "heading4"
-    | "body1"
-    | "body2"
-    | "link"
-    | "linkSmall"
-    | "inputLabel"
-    | "inputValue"
-    | "inputCaption";
+type TypographyProps = VariantProps<typeof typographyVariants> & {
   tag: keyof JSX.IntrinsicElements;
   children: ReactNode;
 };
