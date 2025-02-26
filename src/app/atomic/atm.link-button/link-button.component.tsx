@@ -1,11 +1,12 @@
 import { AnchorHTMLAttributes } from "react";
 import { linkButtonVariants } from "./link-button.component.style";
+import { VariantProps } from "tailwind-variants";
 
-type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
-  variant?: "link";
-  disabled?: boolean;
-  path: string;
-};
+type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  VariantProps<typeof linkButtonVariants> & {
+    disabled?: boolean;
+    path: string;
+  };
 
 function LinkButton({
   variant = "link",

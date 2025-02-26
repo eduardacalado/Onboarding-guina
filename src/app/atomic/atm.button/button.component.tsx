@@ -1,15 +1,11 @@
 import { ButtonHTMLAttributes } from "react";
 import { buttonVariants } from "./button.component.style";
+import { VariantProps } from "tailwind-variants";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?:
-    | "primary"
-    | "secondary"
-    | "primaryDestructive"
-    | "secondaryDestructive"
-    | "cta";
-  disabled?: boolean;
-};
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants> & {
+    disabled?: boolean;
+  };
 
 function Button({
   variant = "primary",
