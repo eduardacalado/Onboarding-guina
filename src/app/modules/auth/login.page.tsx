@@ -15,8 +15,11 @@ export function LoginPage() {
           Input Label
           <InformationDarkIcon />
         </Text>
-        <Input.Root>
-          <Input.Field type={isPasswordVisible ? "text" : "password"} />
+        <Input.Root variant="primary">
+          <Input.Field
+            type={isPasswordVisible ? "text" : "password"}
+            placeholder="Digite sua senha"
+          />
           <Input.Icon onClick={() => setIspasswordVisible(!isPasswordVisible)}>
             {isPasswordVisible ? <EyeOfflightIcon /> : <EyeOnLightIcon />}
           </Input.Icon>

@@ -1,25 +1,32 @@
 import { cn } from "@/lib/utils";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
+import { inputVariants } from "./input.component.style";
+import { VariantProps } from "tailwind-variants";
 
-interface InputRootProps extends ComponentProps<"div"> {}
+type InputRootProps = VariantProps<typeof inputVariants> &
+  ComponentProps<"div"> & {
+    disabled?: boolean;
+  };
 
-function InputRoot({ ...props }: InputRootProps) {
+function InputRoot({ variant, disabled, className, ...props }: InputRootProps) {
   return (
     <div
-      className="h-xl w-3xl p-sm flex justify-between border border-gray-medium rounded-xs text-x-small font-regular border-sm placeholder-gray-x-dark focus:border-brand-primary-dark"
+      className={cn(inputVariants({ variant, disabled }), className)}
       {...props}
     />
   );
 }
 
-interface InputFieldProps extends ComponentProps<"input"> {}
+type InputFieldProps = ComponentProps<"input"> & {
+  disabled?: boolean;
+};
 
 function InputField({ type, ...props }: InputFieldProps) {
   return (
     <input
       type={type}
       data-slot="input"
-      className={cn("outline-none w-full")}
+      className="outline-none w-full placeholder-gray-x-dark"
       {...props}
     />
   );
