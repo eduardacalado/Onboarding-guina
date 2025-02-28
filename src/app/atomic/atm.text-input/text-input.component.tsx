@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 import { VariantProps } from "tailwind-variants";
-import { inputVariants } from "./input.component.style";
+import { inputVariants } from "./text-input.component.style";
 
-type InputProps = VariantProps<typeof inputVariants> & {
+type TextInputProps = VariantProps<typeof inputVariants> & {
   disabled?: boolean;
 };
 
-function Input({
+function TextInput({
   variant = "primary",
   disabled,
   className,
   type,
   ...props
-}: InputProps & React.ComponentProps<"input">) {
+}: TextInputProps & React.ComponentProps<"input">) {
   return (
     <input
       type={type}
@@ -23,4 +23,4 @@ function Input({
   );
 }
 
-export default Input;
+export default TextInput;
