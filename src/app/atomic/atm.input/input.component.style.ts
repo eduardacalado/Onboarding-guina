@@ -4,7 +4,7 @@ export const inputVariants = tv({
   base: "h-xl w-3xl p-sm flex border border-gray-medium rounded-xs text-x-small font-regular",
   variants: {
     variant: {
-      primary: "border-sm focus:border-brand-primary-dark",
+      primary: "group border-sm focus-within:border-brand-primary-dark",
     },
     disabled: {
       true: "bg-gray-x-light placeholder-gray-dark pointer-events-none",
