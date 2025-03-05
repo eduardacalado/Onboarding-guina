@@ -1,5 +1,5 @@
 import {
-  EyeOfflightIcon,
+  EyeOffLightIcon,
   EyeOnLightIcon,
   InformationDarkIcon,
 } from "@/app/assets/svg";
@@ -21,7 +21,7 @@ export function LoginPage() {
             placeholder="Digite sua senha"
           />
           <Input.Icon onClick={() => setIspasswordVisible(!isPasswordVisible)}>
-            {isPasswordVisible ? <EyeOfflightIcon /> : <EyeOnLightIcon />}
+            {isPasswordVisible ? <EyeOffLightIcon /> : <EyeOnLightIcon />}
           </Input.Icon>
         </Input.Root>
         <Text variant="inputCaption" tag="p">
