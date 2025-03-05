@@ -1,7 +1,13 @@
-import { InformationDarkIcon } from "@/app/assets/svg";
+import {
+  EyeOffLightIcon,
+  EyeOnLightIcon,
+  InformationDarkIcon,
+} from "@/app/assets/svg";
 import { Input, Text } from "../../atomic/index";
+import { useState } from "react";
 
 export function LoginPage() {
+  const [isPasswordVisible, setIspasswordVisible] = useState(false);
   return (
     <div className="items-center justify-center h-screen flex flex-col w-full">
       <div className="p-md flex flex-col gap-sm">
@@ -9,11 +15,18 @@ export function LoginPage() {
           Input Label
           <InformationDarkIcon />
         </Text>
-        <Input variant="primary" placeholder="Input Value" />
+        <Input.Root variant="primary">
+          <Input.Field
+            type={isPasswordVisible ? "text" : "password"}
+            placeholder="Digite sua senha"
+          />
+          <Input.Icon onClick={() => setIspasswordVisible(!isPasswordVisible)}>
+            {isPasswordVisible ? <EyeOffLightIcon /> : <EyeOnLightIcon />}
+          </Input.Icon>
+        </Input.Root>
         <Text variant="inputCaption" tag="p">
           Input Caption
         </Text>
-        <Input disabled={true} placeholder="Input Disabled" />
       </div>
     </div>
   );
