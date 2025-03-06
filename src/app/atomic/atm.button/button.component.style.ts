@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const buttonVariants = tv({
-  base: "flex gap-sm px-md py-sm rounded-sm text-medium font-semibold items-center justify-center",
+  base: "flex w-full gap-sm px-md py-sm rounded-sm text-medium font-semibold items-center justify-center",
   variants: {
     variant: {
       primary:
