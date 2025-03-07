@@ -16,6 +16,8 @@ export const typographyVariants = tv({
       inputLabel: "!text-xx-small font-semibold text-gray-dark line-height-md",
       inputValue: "!text-small text-gray-medium line-height-md",
       inputCaption: "!text-xx-small text-gray-dark line-height-md",
+      inputCaptionError:
+        "!text-xx-small text-feedback-error-dark line-height-md",
     },
   },
   defaultVariants: {
