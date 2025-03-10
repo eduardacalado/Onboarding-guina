@@ -1,4 +1,8 @@
-import { EyeOffLightIcon, EyeOnLightIcon } from "@/app/assets/svg";
+import {
+  EyeOffLightIcon,
+  EyeOnLightIcon,
+  FeedbackErrorIcon,
+} from "@/app/assets/svg";
 import { Text, Input } from "../index";
 import { ReactNode, useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -48,9 +52,12 @@ function InputField({
         {icon}
       </Input.Root>
       {errors[name]?.message && (
-        <Text tag="p" variant="inputCaptionError">
-          {String(errors[name]?.message)}
-        </Text>
+        <div className="flex">
+          <FeedbackErrorIcon />
+          <Text tag="p" variant="inputCaptionError">
+            {String(errors[name]?.message)}
+          </Text>
+        </div>
       )}
     </div>
   );
