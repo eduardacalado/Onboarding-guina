@@ -94,9 +94,7 @@ export function LoginPage() {
           </div>
         </div>
       </div>
-      <div>
-        <SideImage src={GuinaTeamImage} alt="Time da Guiná" />
-      </div>
+      <SideImage src={GuinaTeamImage} alt="Time da Guiná" />
     </div>
   );
 }
