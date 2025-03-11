@@ -7,16 +7,17 @@ import {
   LinkButton,
   SideImage,
   Text,
-} from "../../atomic/index";
-import GuinaTeamImage from "../../assets/svg/guina-team/Image.png";
+} from "../../../atomic/index";
+import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
+import * as LoginStrings from "./login.strings";
 
 const formSchema = z.object({
-  useremail: z
+  userEmail: z
     .string({ message: "Insira seu email" })
     .toLowerCase()
     .email({ message: "Email inválido" }),
-  userpassword: z
+  userPassword: z
     .string({ message: "Insira sua senha" })
     .min(6, { message: "A senha deve conter no mínimo 6 dígitos" }),
 });
@@ -25,8 +26,8 @@ export function LoginPage() {
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      useremail: "",
-      userpassword: "",
+      userEmail: "",
+      userPassword: "",
     },
   });
 
@@ -40,39 +41,40 @@ export function LoginPage() {
         <nav className="py-lg px-lg">
           <LinkButton path="./">
             <ArrowLeftIcon />
-            Voltar para o início
+            {LoginStrings.ctaBackToStart}
           </LinkButton>
         </nav>
         <div className="flex items-center justify-center flex-1">
           <div className="justify-center items-center flex flex-col gap-md">
             <div className="justify-center items-center flex flex-col">
               <Text variant="display" tag="h1">
-                Entre ou cadastre-se
+                {LoginStrings.loginSignupTitle}
               </Text>
               <Text variant="body1" tag="p">
-                Para entrar na plataforma é necessário entrar ou criar uma
-                conta.
+                {LoginStrings.loginSignupSubtitle}
               </Text>
             </div>
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <div className="flex flex-col items-end gap-md">
                   <InputField
-                    name="useremail"
-                    label="Email"
+                    name={LoginStrings.emailInput.name}
+                    label={LoginStrings.emailInput.label}
                     type="email"
-                    placeholder="Digite seu email"
+                    placeholder={LoginStrings.emailInput.placeholder}
                     className="flex flex-col gap-sm"
                   />
                   <InputField
-                    name="userpassword"
-                    label="Senha"
+                    name={LoginStrings.passwordInput.name}
+                    label={LoginStrings.passwordInput.label}
                     type="password"
-                    placeholder="Digite sua senha"
+                    placeholder={LoginStrings.passwordInput.placeholder}
                     className="flex flex-col gap-sm"
                   />
-                  <LinkButton path="./">Esqueceu a senha?</LinkButton>
-                  <Button type="submit">Entrar</Button>
+                  <LinkButton path="./">
+                    {LoginStrings.forgotPassword}
+                  </LinkButton>
+                  <Button type="submit">{LoginStrings.ctaEnter}</Button>
                 </div>
               </form>
             </FormProvider>
@@ -80,15 +82,15 @@ export function LoginPage() {
               <div className="flex flex-rol items-center justify-center gap-xxs">
                 <Vector />
                 <Text variant="body2" tag="p">
-                  Ou
+                  {LoginStrings.or}
                 </Text>
                 <Vector />
               </div>
               <div className="flex flex-rol gap-x-sm">
                 <Text variant="body1" tag="p">
-                  Ainda não tem uma conta?
+                  {LoginStrings.noAccount}
                 </Text>
-                <LinkButton path="./">Cadastre-se</LinkButton>
+                <LinkButton path="./">{LoginStrings.ctaSignup}</LinkButton>
               </div>
             </div>
           </div>
