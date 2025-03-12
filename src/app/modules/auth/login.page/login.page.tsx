@@ -52,20 +52,20 @@ export function LoginPage() {
             </div>
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <div className="flex flex-col items-end gap-md">
+                <div className="flex flex-col items-end gap-md w-[400px]">
                   <InputField
                     name={LoginStrings.emailInput.name}
                     label={LoginStrings.emailInput.label}
                     type="email"
                     placeholder={LoginStrings.emailInput.placeholder}
-                    className="flex flex-col gap-sm"
+                    className="flex w-full flex-col gap-sm"
                   />
                   <InputField
                     name={LoginStrings.passwordInput.name}
                     label={LoginStrings.passwordInput.label}
                     type="password"
                     placeholder={LoginStrings.passwordInput.placeholder}
-                    className="flex flex-col gap-sm"
+                    className="flex w-full flex-col gap-sm"
                   />
                   <LinkButton path="./">
                     {LoginStrings.forgotPassword}
