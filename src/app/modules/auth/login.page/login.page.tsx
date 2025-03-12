@@ -47,12 +47,8 @@ export function LoginPage() {
         <div className="flex items-center justify-center flex-1">
           <div className="justify-center items-center flex flex-col gap-md">
             <div className="justify-center items-center flex flex-col">
-              <Text variant="display" tag="h1">
-                {LoginStrings.loginSignupTitle}
-              </Text>
-              <Text variant="body1" tag="p">
-                {LoginStrings.loginSignupSubtitle}
-              </Text>
+              <Text variant="display">{LoginStrings.loginSignupTitle}</Text>
+              <Text variant="body1">{LoginStrings.loginSignupSubtitle}</Text>
             </div>
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -81,15 +77,11 @@ export function LoginPage() {
             <div className="flex flex-col gap-sm items-center">
               <div className="flex flex-rol items-center justify-center gap-xxs">
                 <Vector />
-                <Text variant="body2" tag="p">
-                  {LoginStrings.or}
-                </Text>
+                <Text variant="body2">{LoginStrings.or}</Text>
                 <Vector />
               </div>
               <div className="flex flex-rol gap-x-sm">
-                <Text variant="body1" tag="p">
-                  {LoginStrings.noAccount}
-                </Text>
+                <Text variant="body1">{LoginStrings.noAccount}</Text>
                 <LinkButton path="./">{LoginStrings.ctaSignup}</LinkButton>
               </div>
             </div>

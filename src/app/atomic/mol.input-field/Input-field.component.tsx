@@ -35,9 +35,7 @@ function InputField({
 
   return (
     <div className={className}>
-      <Text variant="inputLabel" tag="p">
-        {label}
-      </Text>
+      <Text variant="inputLabel">{label}</Text>
       <Input.Root variant="primary">
         <Input.Field
           {...register(name)}
@@ -54,7 +52,7 @@ function InputField({
       {errors[name]?.message && (
         <div className="flex">
           <FeedbackErrorIcon />
-          <Text tag="p" variant="inputCaptionError">
+          <Text variant="inputCaptionError">
             {String(errors[name]?.message)}
           </Text>
         </div>
