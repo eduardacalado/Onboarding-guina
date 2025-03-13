@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 export const client = new ApolloClient({
-  uri: "https://onboard-server-kanban-zf2bj2uvta-uc.a.run.app/graphql",
+  uri: import.meta.env.SERVER_URL,
   cache: new InMemoryCache(),
 });
