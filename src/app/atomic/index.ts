@@ -1,7 +1,8 @@
 import Button from "./atm.button/button.component";
 import { Input } from "./atm.input/input.component";
 import LinkButton from "./atm.link-button/link-button.component";
+import SideImage from "./atm.side-image/side-image.component";
 import Text from "./atm.typography/typography.component";
 import InputField from "./mol.input-field/Input-field.component";
 
-export { Button, Input, InputField, LinkButton, Text };
+export { Button, Input, InputField, LinkButton, SideImage, Text };

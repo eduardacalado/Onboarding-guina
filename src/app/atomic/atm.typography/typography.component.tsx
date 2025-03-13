@@ -3,18 +3,34 @@ import { typographyVariants } from "./typography.component.style";
 import { VariantProps } from "tailwind-variants";
 
 type TypographyProps = VariantProps<typeof typographyVariants> & {
-  tag: keyof JSX.IntrinsicElements;
+  tag?: keyof JSX.IntrinsicElements;
   children: ReactNode;
 };
 
+const tagMap = {
+  display: "h1",
+  heading1: "h1",
+  heading2: "h2",
+  inputLabel: "label",
+  inputCaption: "span",
+  inputCaptionError: "span",
+  inputValue: "span",
+} as const;
+
 function Text({
   variant = "display",
-  tag = "p",
+  tag,
   children,
   ...props
 }: TypographyProps) {
+  function handleGetTag(variantType: string): keyof JSX.IntrinsicElements {
+    if (tag) return tag;
+    return (tagMap[variantType as keyof typeof tagMap] ||
+      "p") as keyof JSX.IntrinsicElements;
+  }
+
   return React.createElement(
-    tag,
+    handleGetTag(variant),
     { className: typographyVariants({ variant }), ...props },
     children
   );
