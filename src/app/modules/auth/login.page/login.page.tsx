@@ -11,13 +11,15 @@ import {
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
 import * as LoginStrings from "./login.strings";
+import { useMutation } from "@apollo/client";
+import { LoginDocument } from "@/app/data/graphql/generated/graphql";
 
 const formSchema = z.object({
-  userEmail: z
+  email: z
     .string({ message: "Insira seu email" })
     .toLowerCase()
     .email({ message: "Email inválido" }),
-  userPassword: z
+  password: z
     .string({ message: "Insira sua senha" })
     .min(6, { message: "A senha deve conter no mínimo 6 dígitos" }),
 });
@@ -26,13 +28,24 @@ export function LoginPage() {
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userEmail: "",
-      userPassword: "",
+      email: "",
+      password: "",
     },
   });
 
-  const onSubmit = (values: any) => {
-    console.log("teste", values);
+  const [loginMutation] = useMutation(LoginDocument, {
+    onCompleted: (data) => {
+      console.log("Login realizado com sucesso", data);
+    },
+    onError: (error) => {
+      const errorMessage =
+        error.message || "Erro ao fazer login. Tente novamente";
+      console.log(errorMessage);
+    },
+  });
+
+  const handleFormSubmit = (formData: { email: string; password: string }) => {
+    loginMutation({ variables: { data: formData } });
   };
 
   return (
@@ -51,17 +64,17 @@ export function LoginPage() {
               <Text variant="body1">{LoginStrings.loginSignupSubtitle}</Text>
             </div>
             <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(onSubmit)}>
+              <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
                 <div className="flex flex-col items-end gap-md w-[400px]">
                   <InputField
-                    name={LoginStrings.emailInput.name}
+                    name="email"
                     label={LoginStrings.emailInput.label}
                     type="email"
                     placeholder={LoginStrings.emailInput.placeholder}
                     className="flex w-full flex-col gap-sm"
                   />
                   <InputField
-                    name={LoginStrings.passwordInput.name}
+                    name="password"
                     label={LoginStrings.passwordInput.label}
                     type="password"
                     placeholder={LoginStrings.passwordInput.placeholder}

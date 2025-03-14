@@ -5,13 +5,13 @@ export const loginSignupSubtitle =
   "Para entrar na plataforma é necessário entrar ou criar uma conta.";
 
 export const emailInput = {
-  name: "userEmail",
+  name: "email",
   label: "Email",
   placeholder: "Digite seu email",
 };
 
 export const passwordInput = {
-  name: "userPassword",
+  name: "password",
   label: "Senha",
   placeholder: "Digite sua senha",
 };
