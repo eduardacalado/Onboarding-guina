@@ -11,8 +11,7 @@ import {
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
 import * as LoginStrings from "./login.strings";
-import { useMutation } from "@apollo/client";
-import { LoginDocument } from "@/app/data/graphql/generated/graphql";
+import { useLogin } from "./login.use-case";
 
 const formSchema = z.object({
   email: z
@@ -25,6 +24,17 @@ const formSchema = z.object({
 });
 
 export function LoginPage() {
+  const { login, loading } = useLogin({
+    onCompleted(data) {
+      console.log("Login realizado com sucesso", data);
+    },
+    onError(error) {
+      const errorMessage =
+        error.message || "Erro ao fazer login. Tente novamente";
+      console.log(errorMessage);
+    },
+  });
+
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,19 +43,8 @@ export function LoginPage() {
     },
   });
 
-  const [loginMutation, { loading }] = useMutation(LoginDocument, {
-    onCompleted: (data) => {
-      console.log("Login realizado com sucesso", data);
-    },
-    onError: (error) => {
-      const errorMessage =
-        error.message || "Erro ao fazer login. Tente novamente";
-      console.log(errorMessage);
-    },
-  });
-
   const handleFormSubmit = (formData: { email: string; password: string }) => {
-    loginMutation({ variables: { data: formData } });
+    login({ data: formData });
   };
 
   return (
