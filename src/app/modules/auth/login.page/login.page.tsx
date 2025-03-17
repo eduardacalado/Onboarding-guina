@@ -7,7 +7,6 @@ import {
   LinkButton,
   SideImage,
   Text,
-  LoadingSpinner,
 } from "../../../atomic/index";
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
