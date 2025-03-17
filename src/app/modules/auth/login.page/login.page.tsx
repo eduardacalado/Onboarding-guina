@@ -7,6 +7,7 @@ import {
   LinkButton,
   SideImage,
   Text,
+  LoadingSpinner,
 } from "../../../atomic/index";
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
@@ -33,7 +34,7 @@ export function LoginPage() {
     },
   });
 
-  const [loginMutation] = useMutation(LoginDocument, {
+  const [loginMutation, { loading }] = useMutation(LoginDocument, {
     onCompleted: (data) => {
       console.log("Login realizado com sucesso", data);
     },
@@ -83,7 +84,9 @@ export function LoginPage() {
                   <LinkButton path="./">
                     {LoginStrings.forgotPassword}
                   </LinkButton>
-                  <Button type="submit">{LoginStrings.ctaEnter}</Button>
+                  <Button type="submit" isLoading={loading}>
+                    {LoginStrings.ctaEnter}
+                  </Button>
                 </div>
               </form>
             </FormProvider>
