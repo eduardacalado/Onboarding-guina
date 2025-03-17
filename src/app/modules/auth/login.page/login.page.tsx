@@ -10,7 +10,7 @@ import {
 } from "../../../atomic/index";
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
-import * as LoginStrings from "./login.strings";
+import { loginStrings } from "./login.strings";
 import { useLogin } from "./login.use-case";
 
 const formSchema = z.object({
@@ -53,37 +53,37 @@ export function LoginPage() {
         <nav className="py-lg px-lg">
           <LinkButton path="./">
             <ArrowLeftIcon />
-            {LoginStrings.ctaBackToStart}
+            {loginStrings.ctaBackToStart}
           </LinkButton>
         </nav>
         <div className="flex items-center justify-center flex-1">
           <div className="justify-center items-center flex flex-col gap-md">
             <div className="justify-center items-center flex flex-col">
-              <Text variant="display">{LoginStrings.loginSignupTitle}</Text>
-              <Text variant="body1">{LoginStrings.loginSignupSubtitle}</Text>
+              <Text variant="display">{loginStrings.loginSignupTitle}</Text>
+              <Text variant="body1">{loginStrings.loginSignupSubtitle}</Text>
             </div>
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
                 <div className="flex flex-col items-end gap-md w-[400px]">
                   <InputField
                     name="email"
-                    label={LoginStrings.emailInput.label}
+                    label={loginStrings.emailInput.label}
                     type="email"
-                    placeholder={LoginStrings.emailInput.placeholder}
+                    placeholder={loginStrings.emailInput.placeholder}
                     className="flex w-full flex-col gap-sm"
                   />
                   <InputField
                     name="password"
-                    label={LoginStrings.passwordInput.label}
+                    label={loginStrings.passwordInput.label}
                     type="password"
-                    placeholder={LoginStrings.passwordInput.placeholder}
+                    placeholder={loginStrings.passwordInput.placeholder}
                     className="flex w-full flex-col gap-sm"
                   />
                   <LinkButton path="./">
-                    {LoginStrings.forgotPassword}
+                    {loginStrings.forgotPassword}
                   </LinkButton>
                   <Button type="submit" isLoading={loading}>
-                    {LoginStrings.ctaEnter}
+                    {loginStrings.ctaEnter}
                   </Button>
                 </div>
               </form>
@@ -91,12 +91,12 @@ export function LoginPage() {
             <div className="flex flex-col gap-sm items-center">
               <div className="flex flex-rol items-center justify-center gap-xxs">
                 <Vector />
-                <Text variant="body2">{LoginStrings.or}</Text>
+                <Text variant="body2">{loginStrings.or}</Text>
                 <Vector />
               </div>
               <div className="flex flex-rol gap-x-sm">
-                <Text variant="body1">{LoginStrings.noAccount}</Text>
-                <LinkButton path="./">{LoginStrings.ctaSignup}</LinkButton>
+                <Text variant="body1">{loginStrings.noAccount}</Text>
+                <LinkButton path="./">{loginStrings.ctaSignup}</LinkButton>
               </div>
             </div>
           </div>
