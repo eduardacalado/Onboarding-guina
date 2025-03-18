@@ -30,12 +30,11 @@ export function LoginPage() {
 
   const { login, loading } = useLogin({
     onCompleted(data) {
-      toast.success("Login realizado com sucesso!");
+      toast.success(loginStrings.toastSuccessLogin);
       navigate("/home");
     },
     onError(error) {
-      const errorMessage =
-        error.message || "Erro ao fazer login. Tente novamente";
+      const errorMessage = error.message || loginStrings.toastErrorLogin;
       toast.error(errorMessage);
     },
   });
