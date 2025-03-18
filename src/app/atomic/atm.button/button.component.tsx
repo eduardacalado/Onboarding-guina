@@ -16,8 +16,14 @@ function Button({
   children,
   ...props
 }: ButtonProps) {
+  const isDisabled = isLoading || disabled;
+
   return (
-    <button className={buttonVariants({ variant, disabled })} {...props}>
+    <button
+      className={buttonVariants({ variant, disabled })}
+      disabled={isDisabled}
+      {...props}
+    >
       {isLoading ? <LoadingSpinner /> : children}
     </button>
   );
