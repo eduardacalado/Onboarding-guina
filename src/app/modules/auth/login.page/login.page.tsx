@@ -12,6 +12,8 @@ import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
 import { loginStrings } from "./login.strings";
 import { useLogin } from "./login.use-case";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   email: z
@@ -24,14 +26,17 @@ const formSchema = z.object({
 });
 
 export function LoginPage() {
+  const navigate = useNavigate();
+
   const { login, loading } = useLogin({
     onCompleted(data) {
-      console.log("Login realizado com sucesso", data);
+      toast.success("Login realizado com sucesso!");
+      navigate("/home");
     },
     onError(error) {
       const errorMessage =
         error.message || "Erro ao fazer login. Tente novamente";
-      console.log(errorMessage);
+      toast.error(errorMessage);
     },
   });
 
