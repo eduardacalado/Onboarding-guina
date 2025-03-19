@@ -1,4 +1,7 @@
 export const loginStrings = {
+  toastSuccessLogin: "Login realizado com sucesso!",
+  toastErrorLogin: "Erro ao fazer login. Tente novamente",
+
   ctaBackToStart: "Voltar para o início",
 
   loginSignupTitle: "Entre ou cadastre-se",
