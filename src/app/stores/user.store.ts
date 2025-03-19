@@ -7,15 +7,15 @@ type User = {
 };
 
 type UserStoreProps = {
-  id: string | null;
-  name: string | null;
+  id: string | undefined;
+  name: string | undefined;
   setUser: (user: User) => void;
   clearUser: () => void;
 };
 
 const defaultState: Omit<UserStoreProps, "setUser" | "clearUser"> = {
-  id: null,
-  name: null,
+  id: "",
+  name: "",
 };
 
 export const useUserStore = create<UserStoreProps>()(
