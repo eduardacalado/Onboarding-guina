@@ -2,13 +2,13 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type AuthStoreProps = {
-  token: string | null;
+  token: string;
   setToken: (token: string) => void;
   clearToken: () => void;
 };
 
 const defaultState: Omit<AuthStoreProps, "setToken" | "clearToken"> = {
-  token: null,
+  token: "",
 };
 
 export const useAuthStore = create<AuthStoreProps>()(
