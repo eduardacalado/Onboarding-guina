@@ -7,8 +7,8 @@ type User = {
 };
 
 type UserStoreProps = {
-  id: string | undefined;
-  name: string | undefined;
+  id: string;
+  name: string;
   setUser: (user: User) => void;
   clearUser: () => void;
 };
