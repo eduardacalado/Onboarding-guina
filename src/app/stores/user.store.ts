@@ -18,7 +18,7 @@ const defaultState: Omit<UserStoreProps, "setUser" | "clearUser"> = {
   name: "",
 };
 
-export const useUserStore = create<UserStoreProps>()(
+const useUserStore = create<UserStoreProps>()(
   persist(
     (set) => ({
       ...defaultState,
@@ -31,3 +31,5 @@ export const useUserStore = create<UserStoreProps>()(
     }
   )
 );
+
+export default useUserStore;

@@ -11,7 +11,7 @@ const defaultState: Omit<AuthStoreProps, "setToken" | "clearToken"> = {
   token: "",
 };
 
-export const useAuthStore = create<AuthStoreProps>()(
+const useAuthStore = create<AuthStoreProps>()(
   persist(
     (set) => ({
       ...defaultState,
@@ -24,3 +24,5 @@ export const useAuthStore = create<AuthStoreProps>()(
     }
   )
 );
+
+export default useAuthStore;

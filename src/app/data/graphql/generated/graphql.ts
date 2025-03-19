@@ -262,7 +262,11 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = {
   __typename?: "Mutation";
-  login: { __typename?: "Login"; token: string };
+  login: {
+    __typename?: "Login";
+    token: string;
+    user: { __typename?: "User"; id: string; name: string; email: string };
+  };
 };
 
 /** All built-in and custom scalars, mapped to their actual values */
