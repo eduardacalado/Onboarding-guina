@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const typographyVariants = tv({
-  base: "text-medium font-regular flex gap-sm",
+  base: "text-medium font-regular gap-sm",
   variants: {
     variant: {
       display: "font-bold text-xx-large line-height-sm",
