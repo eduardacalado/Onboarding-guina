@@ -17,7 +17,7 @@ const tagMap = {
   inputValue: "span",
 } as const;
 
-function Text({
+export function Text({
   variant = "display",
   tag,
   children,
@@ -35,5 +35,3 @@ function Text({
     children
   );
 }
-
-export default Text;

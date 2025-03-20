@@ -16,7 +16,7 @@ interface InputFieldProps {
   className?: string;
 }
 
-function InputField({
+export function InputField({
   name,
   label,
   type,
@@ -60,5 +60,3 @@ function InputField({
     </div>
   );
 }
-
-export default InputField;

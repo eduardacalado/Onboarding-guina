@@ -9,7 +9,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     isLoading: boolean;
   };
 
-function Button({
+export function Button({
   variant = "primary",
   disabled,
   isLoading,
@@ -28,5 +28,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

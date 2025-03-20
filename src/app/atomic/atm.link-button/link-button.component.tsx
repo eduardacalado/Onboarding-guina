@@ -8,7 +8,7 @@ type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> &
     path: string;
   };
 
-function LinkButton({
+export function LinkButton({
   variant = "link",
   disabled,
   children,
@@ -25,5 +25,3 @@ function LinkButton({
     </a>
   );
 }
-
-export default LinkButton;
