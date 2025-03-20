@@ -25,6 +25,11 @@ export const registerStrings = {
     },
   },
 
+  readAndAgreed: "Li e concordo com os",
+  termsOfUse: "Termos de uso",
+  and: "e",
+  privacyPolicy: "Política de Privacidade",
+
   ctaRegister: "Cadastrar",
 
   or: "ou",

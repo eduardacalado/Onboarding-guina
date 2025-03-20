@@ -109,15 +109,15 @@ export function RegisterPage() {
                   <div className="flex gap-x-sm">
                     <Checkbox />
                     <Text variant="body1">
-                      Li e concordo com os
+                      {registerStrings.readAndAgreed}
                       <LinkButton variant="link" path="./">
                         {" "}
-                        Termos de uso{" "}
+                        {registerStrings.termsOfUse}{" "}
                       </LinkButton>
-                      e
+                      {registerStrings.and}
                       <LinkButton variant="link" path="./">
                         {" "}
-                        Política de Privacidade
+                        {registerStrings.privacyPolicy}
                       </LinkButton>
                     </Text>
                   </div>
