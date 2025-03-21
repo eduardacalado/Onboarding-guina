@@ -91,10 +91,11 @@
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
-  --spacing-lg: 32px;
-  --spacing-xl: 40px;
-  --spacing-xxl: 190px;
-  --spacing-3xl: 330px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 40px;
+  --spacing-3xl: 190px;
+  --spacing-4xl: 330px;
 }
 
 @layer utilities {

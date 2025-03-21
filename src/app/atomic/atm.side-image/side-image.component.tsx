@@ -5,7 +5,7 @@ type SideImageProps = ImgHTMLAttributes<HTMLImageElement> & {
   alt: string;
 };
 
-function SideImage({ src, alt, ...props }: SideImageProps) {
+export function SideImage({ src, alt, ...props }: SideImageProps) {
   return (
     <img
       className="w-[708px] h-[972px] object-fill"
@@ -15,5 +15,3 @@ function SideImage({ src, alt, ...props }: SideImageProps) {
     />
   );
 }
-
-export default SideImage;

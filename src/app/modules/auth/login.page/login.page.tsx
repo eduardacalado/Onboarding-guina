@@ -17,11 +17,13 @@ import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   email: z
-    .string({ message: "Insira seu email" })
+    .string()
+    .nonempty({ message: "Insira seu email" })
     .toLowerCase()
     .email({ message: "Email inválido" }),
   password: z
-    .string({ message: "Insira sua senha" })
+    .string()
+    .nonempty({ message: "Insira sua senha" })
     .min(6, { message: "A senha deve conter no mínimo 6 dígitos" }),
 });
 
@@ -54,15 +56,15 @@ export function LoginPage() {
   return (
     <div className="items-center justify-between h-screen flex flex-rol w-full">
       <div className="flex flex-1 flex-col h-full">
-        <nav className="py-lg px-lg">
-          <LinkButton path="./">
+        <nav className="py-xl px-xl">
+          <LinkButton variant="hasIcon" path="./">
             <ArrowLeftIcon />
             {loginStrings.ctaBackToStart}
           </LinkButton>
         </nav>
         <div className="flex items-center justify-center flex-1">
           <div className="justify-center items-center flex flex-col gap-md">
-            <div className="justify-center items-center flex flex-col">
+            <div className="justify-center items-center flex flex-col p-xl">
               <Text variant="display">{loginStrings.loginSignupTitle}</Text>
               <Text variant="body1">{loginStrings.loginSignupSubtitle}</Text>
             </div>
@@ -100,13 +102,15 @@ export function LoginPage() {
               </div>
               <div className="flex flex-rol gap-x-sm">
                 <Text variant="body1">{loginStrings.noAccount}</Text>
-                <LinkButton path="./">{loginStrings.ctaSignup}</LinkButton>
+                <LinkButton path="./register">
+                  {loginStrings.ctaRegister}
+                </LinkButton>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <SideImage src={GuinaTeamImage} alt="Time da Guiná" />
+      <SideImage src={GuinaTeamImage} alt={loginStrings.altImage} />
     </div>
   );
 }

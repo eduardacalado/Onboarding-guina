@@ -25,5 +25,7 @@ export const loginStrings = {
   or: "Ou",
 
   noAccount: "Ainda não tem uma conta?",
-  ctaSignup: "Cadastre-se",
+  ctaRegister: "Cadastre-se",
+
+  altImage: "Time da Guiná",
 };
