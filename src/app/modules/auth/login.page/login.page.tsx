@@ -56,7 +56,7 @@ export function LoginPage() {
   return (
     <div className="items-center justify-between h-screen flex flex-rol w-full">
       <div className="flex flex-1 flex-col h-full">
-        <nav className="py-lg px-lg">
+        <nav className="py-xl px-xl">
           <LinkButton variant="hasIcon" path="./">
             <ArrowLeftIcon />
             {loginStrings.ctaBackToStart}
@@ -64,7 +64,7 @@ export function LoginPage() {
         </nav>
         <div className="flex items-center justify-center flex-1">
           <div className="justify-center items-center flex flex-col gap-md">
-            <div className="justify-center items-center flex flex-col p-lg">
+            <div className="justify-center items-center flex flex-col p-xl">
               <Text variant="display">{loginStrings.loginSignupTitle}</Text>
               <Text variant="body1">{loginStrings.loginSignupSubtitle}</Text>
             </div>
