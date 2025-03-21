@@ -1,7 +1,7 @@
 import { Button, Checkbox, InputField, LinkButton, Text } from "@/app/atomic";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { boolean, z } from "zod";
+import { z } from "zod";
 import { registerStrings } from "../register.strings";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "../register.use-case";
