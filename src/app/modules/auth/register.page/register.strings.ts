@@ -1,4 +1,7 @@
 export const registerStrings = {
+  toastSuccessRegister: "Cadastro realizado com sucesso!",
+  toastErrorRegister: "Erro ao cadastrar usuário. Tente novamente",
+
   ctaBackToStart: "Voltar para o início",
 
   registerTitle: "Cadastre-se",
