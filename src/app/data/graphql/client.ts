@@ -21,8 +21,8 @@ const authLink = setContext((_, { headers }) => {
 const logoutMiddleware = onError(({ graphQLErrors }) => {
   graphQLErrors?.forEach((element) => {
     if ("code" in element && element.code === 401) {
-      localStorage.removeItem("user-storage");
-      localStorage.removeItem("auth-storage");
+      localStorage.removeItem("user-store");
+      localStorage.removeItem("auth-store");
 
       useAuthStore.getState().clearToken();
       useUserStore.getState().clearUser();
