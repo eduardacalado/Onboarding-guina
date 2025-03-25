@@ -4,7 +4,7 @@ import { useAuthStore } from "../stores";
 export function AuthGuard() {
   const { token } = useAuthStore();
 
-  if (!token) {
+  if (!(token.length > 1)) {
     return <Navigate to="/login" />;
   }
 
