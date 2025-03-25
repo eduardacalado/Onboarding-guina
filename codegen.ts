@@ -2,7 +2,7 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 import { config as dotenvConfig } from "dotenv";
 
 dotenvConfig();
-const serverURL = process.env.SERVER_URL;
+const serverURL = process.env.VITE_SERVER_URL;
 
 const config: CodegenConfig = {
   schema: serverURL,

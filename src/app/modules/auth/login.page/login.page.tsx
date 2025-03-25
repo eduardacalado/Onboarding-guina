@@ -31,7 +31,7 @@ export function LoginPage() {
   const navigate = useNavigate();
 
   const { login, loading } = useLogin({
-    onCompleted(data) {
+    onCompleted() {
       toast.success(loginStrings.toastSuccessLogin);
       navigate("/home");
     },
