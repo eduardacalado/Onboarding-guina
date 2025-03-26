@@ -1,4 +1,4 @@
-function EyeOnLightIcon() {
+export function EyeOnLightIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,5 +25,3 @@ function EyeOnLightIcon() {
     </svg>
   );
 }
-
-export default EyeOnLightIcon;
