@@ -3,6 +3,7 @@ import InstaqLogo from "@/app/assets/svg/instaq-logo/Instaq.svg";
 import { AvatarImage, LinkButton } from "@/app/atomic";
 import Avatar from "@/app/assets/svg/avatar/Avatar.png";
 import { PickerIcon } from "@/app/assets/svg/index";
+import { homeStrings } from "./home.strings";
 
 export function HomeLayout() {
   return (
@@ -15,7 +16,7 @@ export function HomeLayout() {
           <div className="flex items-center gap-sm">
             <AvatarImage src={Avatar} alt="Avatar do usuário" />
             <LinkButton path="/home" variant="hasIcon">
-              Nome do usuário
+              {homeStrings.headerUsername}
               <PickerIcon />
             </LinkButton>
           </div>
