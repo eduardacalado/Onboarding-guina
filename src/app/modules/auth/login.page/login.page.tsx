@@ -5,7 +5,7 @@ import {
   Button,
   InputField,
   LinkButton,
-  SideImage,
+  Image,
   Text,
 } from "../../../atomic/index";
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
@@ -110,7 +110,11 @@ export function LoginPage() {
           </div>
         </div>
       </div>
-      <SideImage src={GuinaTeamImage} alt={loginStrings.altImage} />
+      <Image
+        variant="sideImage"
+        src={GuinaTeamImage}
+        alt={loginStrings.altImage}
+      />
     </div>
   );
 }
