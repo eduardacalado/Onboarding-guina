@@ -7,14 +7,10 @@ import { PickerIcon } from "@/app/assets/svg/index";
 export function HomeLayout() {
   return (
     <div>
-      <header className="flex items-center justify-center h-[64px] px-[142px] py-[8px] shadow-lg">
-        <div className="flex justify-between  items-center w-full">
-          <div className="flex items-center justify-center bg-brand-primary-x-dark w-[48px] h-[48px] rounded-sm">
-            <img
-              src={InstaqLogo}
-              alt="Logo Instaq"
-              className="w-[40px] h-[40px]"
-            />
+      <header className="flex items-center justify-center h-4xl px-[142px] py-sm">
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center justify-center bg-brand-primary-x-dark w-3xl h-3xl rounded-sm">
+            <img src={InstaqLogo} alt="Logo Instaq" className="w-xxl h-xxl" />
           </div>
           <div className="flex items-center gap-sm">
             <AvatarImage src={Avatar} alt="Avatar do usuário" />
