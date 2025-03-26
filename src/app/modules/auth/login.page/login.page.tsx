@@ -32,7 +32,7 @@ export function LoginPage() {
 
   const { login, loading } = useLogin({
     onCompleted() {
-      toast.success(loginStrings.toastSuccessLogin);
+      toast.success("loginStrings.toastSuccessLogin");
       navigate("/home");
     },
     onError(error) {

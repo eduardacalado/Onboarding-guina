@@ -15,7 +15,7 @@ export const useAuthStore = create<AuthStoreProps>()(
   persist(
     (set) => ({
       ...defaultState,
-      setToken: set,
+      setToken: (token) => set({ token: token }),
       clearToken: () => set(defaultState),
     }),
     {

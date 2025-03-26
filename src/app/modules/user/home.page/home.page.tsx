@@ -1,6 +1,6 @@
 export function HomePage() {
   return (
-    <div>
+    <div className="bg-gray-light">
       <p>Home</p>
     </div>
   );
