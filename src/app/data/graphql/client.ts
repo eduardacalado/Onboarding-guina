@@ -33,6 +33,6 @@ const logoutMiddleware = onError(({ graphQLErrors }) => {
 });
 
 export const client = new ApolloClient({
-  link: from([authLink, httpLink, logoutMiddleware]),
+  link: from([authLink, logoutMiddleware, httpLink]),
   cache: new InMemoryCache(),
 });
