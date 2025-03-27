@@ -38,11 +38,11 @@ export function RegisterForm() {
 
   const { register, loading } = useRegister({
     onCompleted() {
-      toast.success(registerStrings.toastSuccessRegister);
+      toast.success(registerStrings.SuccessMessage);
       navigate("/home");
     },
     onError(error) {
-      const errorMessage = error.message || registerStrings.toastErrorRegister;
+      const errorMessage = error.message || registerStrings.ErrorMessage;
       toast.error(errorMessage);
     },
   });

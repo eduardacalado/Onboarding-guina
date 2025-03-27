@@ -1,6 +1,6 @@
 export const loginStrings = {
-  toastSuccessLogin: "Login realizado com sucesso!",
-  toastErrorLogin: "Erro ao fazer login. Tente novamente",
+  SuccessMessage: "Login realizado com sucesso!",
+  ErrorMesage: "Erro ao fazer login. Tente novamente",
 
   ctaBackToStart: "Voltar para o início",
 

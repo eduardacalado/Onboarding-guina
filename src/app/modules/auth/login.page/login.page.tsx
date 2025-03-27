@@ -32,11 +32,11 @@ export function LoginPage() {
 
   const { login, loading } = useLogin({
     onCompleted() {
-      toast.success("loginStrings.toastSuccessLogin");
+      toast.success(loginStrings.SuccessMessage);
       navigate("/home");
     },
     onError(error) {
-      const errorMessage = error.message || loginStrings.toastErrorLogin;
+      const errorMessage = error.message || loginStrings.ErrorMesage;
       toast.error(errorMessage);
     },
   });
