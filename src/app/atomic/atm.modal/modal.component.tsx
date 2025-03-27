@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { CloseIcon } from "@/app/assets/svg";
+import { divVariants } from "./modal.component.style";
 
 type ModalProps = {
   children: ReactNode;
@@ -15,13 +16,13 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     <>
       {createPortal(
         <div onClick={onClose}>
-          <div className="fixed inset-0 bg-black opacity-30" />
-          <div className="fixed inset-0 flex items-center justify-center px-3xl">
+          <div className={divVariants({ variant: "darkBackground" })} />
+          <div className={divVariants({ variant: "backgroundDiv" })}>
             <div
-              className="flex flex-col items-center bg-white p-6 rounded-lg w-full max-w-[600px]"
+              className={divVariants({ variant: "modal" })}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex w-full justify-end">
+              <div className={divVariants({ variant: "closeButtonDiv" })}>
                 <button onClick={onClose} className="cursor-pointer">
                   <CloseIcon />
                 </button>
