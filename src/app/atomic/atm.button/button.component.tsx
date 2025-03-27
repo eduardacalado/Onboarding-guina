@@ -6,7 +6,7 @@ import { LoadingSpinner } from "@/app/atomic/index";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
     disabled?: boolean;
-    isLoading: boolean;
+    isLoading?: boolean;
   };
 
 export function Button({

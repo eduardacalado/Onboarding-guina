@@ -1,8 +1,11 @@
 import { ImagePlaceholderIcon } from "@/app/assets/svg";
 import { Button, Text } from "@/app/atomic";
 import { homeStrings } from "./home.strings";
+import { Modal } from "@/app/atomic/atm.Modal/modal.component";
+import { useState } from "react";
 
 export function HomePage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="bg-gray-light h-screen px-[142px] py-xl">
       <div className="py-xl">
@@ -17,10 +20,13 @@ export function HomePage() {
           <Text variant="body1">{homeStrings.noProjectSubtitle}</Text>
         </div>
         <div className="w-[140px]">
-          <Button variant="cta" isLoading={false}>
+          <Button variant="cta" onClick={() => setIsModalOpen(true)}>
             {homeStrings.ctaCreateProject}
           </Button>
         </div>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <p>Modal</p>
+        </Modal>
       </div>
     </div>
   );
