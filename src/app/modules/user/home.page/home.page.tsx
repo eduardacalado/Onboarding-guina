@@ -1,7 +1,6 @@
 import { ImagePlaceholderIcon } from "@/app/assets/svg";
-import { Button, Text } from "@/app/atomic";
+import { Button, Text, Modal } from "@/app/atomic";
 import { homeStrings } from "./home.strings";
-import { Modal } from "@/app/atomic/atm.Modal/modal.component";
 import { useState } from "react";
 
 export function HomePage() {

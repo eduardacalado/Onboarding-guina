@@ -4,6 +4,7 @@ import { Image } from "./atm.image/image.component";
 import { Input } from "./atm.input/input.component";
 import { LinkButton } from "./atm.link-button/link-button.component";
 import { LoadingSpinner } from "./atm.loading-spinner/loading-spinner.component";
+import { Modal } from "./atm.modal/modal.component";
 import { Text } from "./atm.typography/typography.component";
 import { InputField } from "./mol.input-field/Input-field.component";
 
@@ -15,5 +16,6 @@ export {
   InputField,
   LinkButton,
   LoadingSpinner,
+  Modal,
   Text,
 };
