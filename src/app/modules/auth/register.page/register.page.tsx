@@ -1,4 +1,4 @@
-import { LinkButton, SideImage, Text } from "@/app/atomic";
+import { LinkButton, Image, Text } from "@/app/atomic";
 import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { registerStrings } from "./register.strings";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
@@ -37,7 +37,11 @@ export function RegisterPage() {
           </div>
         </div>
       </div>
-      <SideImage src={GuinaTeamImage} alt={registerStrings.altImage} />
+      <Image
+        variant="sideImage"
+        src={GuinaTeamImage}
+        alt={registerStrings.altImage}
+      />
     </div>
   );
 }

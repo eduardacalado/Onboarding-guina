@@ -11,6 +11,7 @@ const tagMap = {
   display: "h1",
   heading1: "h1",
   heading2: "h2",
+  heading3: "h3",
   inputLabel: "label",
   inputCaption: "span",
   inputCaptionError: "span",
