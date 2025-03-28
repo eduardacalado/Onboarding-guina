@@ -4,19 +4,19 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCreateBoard } from "../home.use-case";
 import { toast } from "react-toastify";
+import { createProjectStrings } from "./create-project.strings";
 
 const formSchema = z.object({
-  name: z.string().nonempty({ message: "Insira o nome do projeo" }),
+  name: z.string().nonempty({ message: "Insira o nome do projeto" }),
 });
 
 export function CreateProjectModal() {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
-      toast.success("projeto criado com sucesso!");
+      toast.success(createProjectStrings.successMessage);
     },
     onError(error) {
-      const errorMessage =
-        error.message || "Erro ao criar tarefa, tente novamente";
+      const errorMessage = error.message || createProjectStrings.errorMessage;
       toast.error(errorMessage);
     },
   });
@@ -36,20 +36,20 @@ export function CreateProjectModal() {
     <>
       <div className="flex flex-col w-full gap-lg">
         <div className="flex justify-center">
-          <Text>Criar novo projeto</Text>
+          <Text>{createProjectStrings.createProjectTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
             <div className="flex flex-col gap-lg">
               <InputField
                 name="name"
-                label="Nome do projeto"
+                label={createProjectStrings.input.label}
                 type="text"
-                placeholder="Digite o nome do projeto"
+                placeholder={createProjectStrings.input.label}
                 className="flex w-full flex-col gap-sm"
               />
               <Button type="submit" isLoading={loading}>
-                Criar projeto
+                {createProjectStrings.ctaCreateProject}
               </Button>
             </div>
           </form>
