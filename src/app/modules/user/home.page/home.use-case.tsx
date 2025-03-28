@@ -11,13 +11,13 @@ type useCreateBoardProps = {
 };
 
 export function useCreateBoard({ onCompleted, onError }: useCreateBoardProps) {
-  const [loginMutation, { loading }] = useMutation(CreateBoardDocument, {
+  const [createBoardMutation, { loading }] = useMutation(CreateBoardDocument, {
     onCompleted,
     onError,
   });
 
   const createBoard = (variables: CreateBoardMutationVariables) => {
-    loginMutation({ variables });
+    createBoardMutation({ variables });
   };
 
   return { createBoard, loading };
