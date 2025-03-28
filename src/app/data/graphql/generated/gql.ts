@@ -14,10 +14,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "mutation createBoard($data: BoardInput!) {\n  createBoard(data: $data) {\n    id\n    name\n  }\n}": typeof types.CreateBoardDocument,
     "mutation login($data: LoginInput!) {\n  login(data: $data) {\n    token\n    user {\n      id\n      name\n      email\n    }\n  }\n}": typeof types.LoginDocument,
     "mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}": typeof types.CreateUserDocument,
 };
 const documents: Documents = {
+    "mutation createBoard($data: BoardInput!) {\n  createBoard(data: $data) {\n    id\n    name\n  }\n}": types.CreateBoardDocument,
     "mutation login($data: LoginInput!) {\n  login(data: $data) {\n    token\n    user {\n      id\n      name\n      email\n    }\n  }\n}": types.LoginDocument,
     "mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}": types.CreateUserDocument,
 };
@@ -36,6 +38,10 @@ const documents: Documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation createBoard($data: BoardInput!) {\n  createBoard(data: $data) {\n    id\n    name\n  }\n}"): (typeof documents)["mutation createBoard($data: BoardInput!) {\n  createBoard(data: $data) {\n    id\n    name\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

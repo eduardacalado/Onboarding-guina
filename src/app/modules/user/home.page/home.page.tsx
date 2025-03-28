@@ -2,6 +2,7 @@ import { ImagePlaceholderIcon } from "@/app/assets/svg";
 import { Button, Text, Modal } from "@/app/atomic";
 import { homeStrings } from "./home.strings";
 import { useState } from "react";
+import { CreateProjectModal } from "./components/create-project.modal";
 
 export function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,7 @@ export function HomePage() {
           </Button>
         </div>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <p>Modal</p>
+          <CreateProjectModal />
         </Modal>
       </div>
     </div>
