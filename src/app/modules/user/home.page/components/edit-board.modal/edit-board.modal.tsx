@@ -2,8 +2,6 @@ import { Button, InputField, Text } from "@/app/atomic";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useCreateBoard } from "../../home.use-case";
-import { toast } from "react-toastify";
 import { editBoardStrings } from "./edit-board.strings";
 
 const formSchema = z.object({
@@ -11,16 +9,6 @@ const formSchema = z.object({
 });
 
 export function EditBoardModal() {
-  const { loading } = useCreateBoard({
-    onCompleted() {
-      toast.success(editBoardStrings.successMessage);
-    },
-    onError(error) {
-      const errorMessage = error.message || editBoardStrings.errorMessage;
-      toast.error(errorMessage);
-    },
-  });
-
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,9 +36,7 @@ export function EditBoardModal() {
                 placeholder={editBoardStrings.input.placeholder}
                 className="flex w-full flex-col gap-sm"
               />
-              <Button type="submit" isLoading={loading}>
-                {editBoardStrings.ctaCreateProject}
-              </Button>
+              <Button type="submit">{editBoardStrings.ctaCreateProject}</Button>
             </div>
           </form>
         </FormProvider>
