@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { editBoardStrings } from "./edit-board.strings";
+import { divVariants } from "./edit-board.modal.style";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
@@ -22,13 +23,13 @@ export function EditBoardModal() {
 
   return (
     <>
-      <div className="flex flex-col w-full gap-lg">
-        <div className="flex justify-center">
+      <div className={divVariants({ variant: "modalContainer" })}>
+        <div className={divVariants({ variant: "titleContainer" })}>
           <Text>{editBoardStrings.editBoardTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div className="flex flex-col gap-lg">
+            <div className={divVariants({ variant: "inputFieldContainer" })}>
               <InputField
                 name="name"
                 label={editBoardStrings.input.label}
