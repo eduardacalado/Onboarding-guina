@@ -2,18 +2,24 @@ import { Image } from "../atm.image/image.component";
 import { Text } from "../atm.typography/typography.component";
 import ProjectImage from "@/app/assets/svg/project-image/Default.png";
 
-export function Board() {
+type BoardProps = {
+  title: string;
+};
+
+export function Board({ title }: BoardProps) {
   return (
-    <div className="border border-sm border-gray-light rounded-sm">
-      <div className="max-w-[247px] max-h-[124px] overflow-hidden">
+    <div className="flex flex-col flex-[0_0_265px] max-h-[250px] border border-sm border-gray-light rounded-sm overflow-hidden">
+      <div className="min-h-[124px] overflow-hidden">
         <Image
-          variant="projectImage"
+          variant="boardImage"
           src={ProjectImage}
           alt="Imagem do projeto"
         />
       </div>
-      <div className="flex flex-col gap-sm p-lg">
-        <Text variant="heading3">Projeto tal</Text>
+      <div className="flex flex-col gap-sm p-lg overflow-ellipsis">
+        <Text className="line-clamp-2" variant="heading3">
+          {title}
+        </Text>
         <Text variant="body1">Criado em xx/xx/xxx</Text>
       </div>
     </div>

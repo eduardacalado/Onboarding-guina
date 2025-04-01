@@ -6,7 +6,7 @@ export const imageVariants = tv({
       sideImage: "w-[708px] h-[972px] object-fill",
       avatarImage: "w-xxl h-xxl",
       instaqLogo: "w-xxl h-xxl",
-      projectImage: "w-full h-full object-cover",
+      boardImage: "w-full h-full object-cover",
     },
   },
 });

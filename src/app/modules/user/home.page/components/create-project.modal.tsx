@@ -10,10 +10,17 @@ const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
 });
 
-export function CreateProjectModal() {
+type CreateProjectModalProps = {
+  onProjectCreated: () => void;
+};
+
+export function CreateProjectModal({
+  onProjectCreated,
+}: CreateProjectModalProps) {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
       toast.success(createProjectStrings.successMessage);
+      onProjectCreated();
     },
     onError(error) {
       const errorMessage = error.message || createProjectStrings.errorMessage;

@@ -5,6 +5,7 @@ import { VariantProps } from "tailwind-variants";
 type TypographyProps = VariantProps<typeof typographyVariants> & {
   tag?: keyof JSX.IntrinsicElements;
   children: ReactNode;
+  className?: string;
 };
 
 const tagMap = {
@@ -21,6 +22,7 @@ const tagMap = {
 export function Text({
   variant = "display",
   tag,
+  className,
   children,
   ...props
 }: TypographyProps) {
@@ -32,7 +34,7 @@ export function Text({
 
   return React.createElement(
     handleGetTag(variant),
-    { className: typographyVariants({ variant }), ...props },
+    { className: `${typographyVariants({ variant })} ${className}`, ...props },
     children
   );
 }
