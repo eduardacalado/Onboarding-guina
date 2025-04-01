@@ -65,7 +65,7 @@ export function HomePage() {
   function renderHomeContent() {
     const isBoardListEmpty = totalBoards.length === 0 && !hasCreatedBoard;
 
-    if (loading) {
+    if (!loading) {
       return <BoardListSkeleton />;
     }
 
