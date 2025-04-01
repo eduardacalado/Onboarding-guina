@@ -1,4 +1,4 @@
-export const createProjectStrings = {
+export const createBoardStrings = {
   successMessage: "Projeto criado com sucesso!",
   errorMessage: "Erro ao criar projeto, tente novamente",
 

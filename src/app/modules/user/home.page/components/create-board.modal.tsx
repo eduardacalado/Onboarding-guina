@@ -4,19 +4,26 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCreateBoard } from "../home.use-case";
 import { toast } from "react-toastify";
-import { createProjectStrings } from "./create-project.strings";
+import { createBoardStrings } from "./create-board.strings";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
 });
 
-export function CreateProjectModal() {
+type CreateProjectModalProps = {
+  onProjectCreated: () => void;
+};
+
+export function CreateBoardModal({
+  onProjectCreated,
+}: CreateProjectModalProps) {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
-      toast.success(createProjectStrings.successMessage);
+      toast.success(createBoardStrings.successMessage);
+      onProjectCreated();
     },
     onError(error) {
-      const errorMessage = error.message || createProjectStrings.errorMessage;
+      const errorMessage = error.message || createBoardStrings.errorMessage;
       toast.error(errorMessage);
     },
   });
@@ -36,20 +43,20 @@ export function CreateProjectModal() {
     <>
       <div className="flex flex-col w-full gap-lg">
         <div className="flex justify-center">
-          <Text>{createProjectStrings.createProjectTitle}</Text>
+          <Text>{createBoardStrings.createProjectTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
             <div className="flex flex-col gap-lg">
               <InputField
                 name="name"
-                label={createProjectStrings.input.label}
+                label={createBoardStrings.input.label}
                 type="text"
-                placeholder={createProjectStrings.input.label}
+                placeholder={createBoardStrings.input.label}
                 className="flex w-full flex-col gap-sm"
               />
               <Button type="submit" isLoading={loading}>
-                {createProjectStrings.ctaCreateProject}
+                {createBoardStrings.ctaCreateProject}
               </Button>
             </div>
           </form>
