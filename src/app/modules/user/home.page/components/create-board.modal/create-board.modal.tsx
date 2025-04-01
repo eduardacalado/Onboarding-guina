@@ -2,7 +2,7 @@ import { Button, InputField, Text } from "@/app/atomic";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useCreateBoard } from "../home.use-case";
+import { useCreateBoard } from "../../home.use-case";
 import { toast } from "react-toastify";
 import { createBoardStrings } from "./create-board.strings";
 
