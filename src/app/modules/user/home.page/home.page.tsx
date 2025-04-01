@@ -88,7 +88,11 @@ export function HomePage() {
             </span>
           </button>
           {boards?.nodes.map((board) => (
-            <Board key={board.id} title={board.name} />
+            <Board
+              key={board.id}
+              title={board.name}
+              handleModal={() => setIsEditModalOpen(true)}
+            />
           ))}
         </div>
         <div className="flex w-full justify-center">
