@@ -12,7 +12,6 @@ interface InputFieldProps {
   label: string;
   type: "text" | "email" | "password" | "tel";
   placeholder: string;
-  value?: string;
   icon?: ReactNode;
   className?: string;
 }
@@ -22,7 +21,6 @@ export function InputField({
   label,
   type,
   placeholder,
-  value,
   icon,
   className,
 }: InputFieldProps) {
@@ -43,7 +41,6 @@ export function InputField({
           {...register(name)}
           type={type === "password" && isPasswordVisible ? "text" : type}
           placeholder={placeholder}
-          value={value}
         />
         {type === "password" && (
           <Input.Icon onClick={togglePasswordVisibility}>

@@ -1,4 +1,6 @@
 export const homeStrings = {
+  errorMessage: "Erro ao criar projeto. Tente novamente",
+
   headerUsername: "Nome do usuário",
 
   allProjectsTitle: "Todos os projetos",

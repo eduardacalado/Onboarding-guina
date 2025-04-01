@@ -7,7 +7,7 @@ import {
 import { Button, Text, Modal } from "@/app/atomic";
 import { homeStrings } from "./home.strings";
 import { useState } from "react";
-import { CreateProjectModal } from "./components/create-project.modal";
+import { CreateBoardModal } from "./components/create-board.modal";
 import { Board } from "@/app/atomic/mol.board/board.component";
 import { useBoards } from "../board/board.use-case";
 
@@ -38,8 +38,9 @@ export function HomePage() {
         );
       }
     },
-    onError() {
-      toast.error("erro ao criar novo projeto");
+    onError(error) {
+      const errorMessage = error.message || homeStrings.errorMessage;
+      toast.error(errorMessage);
     },
   });
   const hasNextPage = boards?.pageInfo?.hasNextPage;
@@ -53,7 +54,7 @@ export function HomePage() {
     setCurrentPage(currentPage - 1);
   };
 
-  const handleCreateProject = () => {
+  const handleCreateBoard = () => {
     setIsModalOpen(false);
     setHasCreatedBoard(true);
     refetch();
@@ -123,7 +124,7 @@ export function HomePage() {
         )}
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <CreateProjectModal onProjectCreated={handleCreateProject} />
+          <CreateBoardModal onProjectCreated={handleCreateBoard} />
         </Modal>
       </div>
     </div>
