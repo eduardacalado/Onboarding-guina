@@ -7,6 +7,7 @@ import { LoadingSpinner } from "./atm.loading-spinner/loading-spinner.component"
 import { Modal } from "./atm.modal/modal.component";
 import { Text } from "./atm.typography/typography.component";
 import { InputField } from "./mol.input-field/Input-field.component";
+import { Skeleton } from "./mol.skeleton/skeleton.component";
 
 export {
   Button,
@@ -17,5 +18,6 @@ export {
   LinkButton,
   LoadingSpinner,
   Modal,
+  Skeleton,
   Text,
 };
