@@ -14,6 +14,7 @@ import { useBoards } from "../board/board.use-case";
 import { toast } from "react-toastify";
 import { BoardListSkeleton } from "./components/skeleton/board-list.skeleton";
 import { EmptyBoardList } from "./components/empty-board-list/empty-board-list.component";
+import { EditBoardModal } from "./components/edit-board.modal/edit-board.modal";
 
 type CardProps = {
   id: number;
@@ -25,6 +26,7 @@ export function HomePage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const limit = 9;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [totalBoards, setBoards] = useState<CardProps[]>([]);
   const { boards, loading, refetch } = useBoards({
     variables: {
@@ -86,7 +88,11 @@ export function HomePage() {
             </span>
           </button>
           {boards?.nodes.map((board) => (
-            <Board key={board.id} title={board.name} />
+            <Board
+              key={board.id}
+              title={board.name}
+              handleModal={() => setIsEditModalOpen(true)}
+            />
           ))}
         </div>
         <div className="flex w-full justify-center">
@@ -125,6 +131,13 @@ export function HomePage() {
         {renderHomeContent()}
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <CreateBoardModal onProjectCreated={handleCreateBoard} />
+        </Modal>
+
+        <Modal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+        >
+          <EditBoardModal />
         </Modal>
       </div>
     </div>
