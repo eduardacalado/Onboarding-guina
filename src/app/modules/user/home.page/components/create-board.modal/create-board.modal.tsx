@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useCreateBoard } from "../../home.use-case";
 import { toast } from "sonner";
 import { createBoardStrings } from "./create-board.strings";
-import { createBoardDivVariants } from "./create-board.styles";
+import { createBoardDivVariants } from "./create-board.style";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
