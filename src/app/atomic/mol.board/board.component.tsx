@@ -1,14 +1,19 @@
-import { EditIcon } from "@/app/assets/svg";
+import { DeleteIcon, EditIcon } from "@/app/assets/svg";
 import { Image } from "../atm.image/image.component";
 import { Text } from "../atm.typography/typography.component";
 import ProjectImage from "@/app/assets/svg/project-image/Default.png";
 
 type BoardProps = {
   title: string;
-  handleModal: () => void;
+  handleOpenEditModal: () => void;
+  handleOpenDeleteModal: () => void;
 };
 
-export function Board({ title, handleModal }: BoardProps) {
+export function Board({
+  title,
+  handleOpenEditModal,
+  handleOpenDeleteModal,
+}: BoardProps) {
   return (
     <div className="flex flex-col flex-[0_0_265px] max-h-[250px] border border-sm border-gray-light rounded-sm overflow-hidden">
       <div className="min-h-[124px] overflow-hidden">
@@ -23,13 +28,12 @@ export function Board({ title, handleModal }: BoardProps) {
           {title}
         </Text>
         <Text variant="body1">Criado em xx/xx/xxx</Text>
-        <div className="flex w-full justify-end">
-          <button
-            type="button"
-            className="cursor-pointer"
-            onClick={handleModal}
-          >
+        <div className="flex w-full gap-md justify-end">
+          <button className="cursor-pointer" onClick={handleOpenEditModal}>
             <EditIcon />
+          </button>
+          <button className="cursor-pointer" onClick={handleOpenDeleteModal}>
+            <DeleteIcon />
           </button>
         </div>
       </div>

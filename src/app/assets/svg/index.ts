@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "./icons/arrow-right";
 import { ChevronLeftIcon } from "./icons/chevron-left";
 import { ChevronRight } from "./icons/chevron-right";
 import { CloseIcon } from "./icons/close/idex";
+import { DeleteIcon } from "./icons/delete";
 import { EditIcon } from "./icons/edit";
 import { EyeOffLightIcon } from "./icons/eye-off-light";
 import { EyeOnLightIcon } from "./icons/eye-on-light";
@@ -19,6 +20,7 @@ export {
   ChevronLeftIcon,
   ChevronRight,
   CloseIcon,
+  DeleteIcon,
   EditIcon,
   EyeOffLightIcon,
   EyeOnLightIcon,

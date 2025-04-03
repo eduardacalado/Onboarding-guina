@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { BoardListSkeleton } from "./components/skeleton/board-list.skeleton";
 import { EmptyBoardList } from "./components/empty-board-list/empty-board-list.component";
 import { EditBoardModal } from "./components/edit-board.modal/edit-board.modal";
+import { DeleteBoardModal } from "./components/delete-board.modal/delete-board.modal";
 
 type CardProps = {
   id: string;
@@ -24,6 +25,7 @@ export function HomePage() {
   const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
   const [selectedBoardId, setSelectedBoardId] = useState<string>();
   const [totalBoards, setTotalBoards] = useState<CardProps[]>([]);
+  const [isDeleteBoardModalOpen, setIsDeleteBoardModalOpen] = useState(false);
   const { boards, loading, refetch } = useBoards({
     variables: {
       pageInput: { limit: limit, offset: (currentPage - 1) * limit },
@@ -113,7 +115,8 @@ export function HomePage() {
             <Board
               key={board.id}
               title={board.name}
-              handleModal={() => handleEditBoard(board.id)}
+              handleOpenEditModal={() => handleEditBoard(board.id)}
+              handleOpenDeleteModal={() => setIsDeleteBoardModalOpen(true)}
             />
           ))}
         </div>
@@ -166,6 +169,17 @@ export function HomePage() {
             boardId={String(selectedBoardId)}
             boardName={String(selectedBoard?.name)}
             onBoardUpdated={() => handleToggleEditBoardModal()}
+          />
+        </Modal>
+
+        <Modal
+          isOpen={isDeleteBoardModalOpen}
+          onClose={() => setIsDeleteBoardModalOpen(false)}
+        >
+          <DeleteBoardModal
+            boardName={String(selectedBoard?.name)}
+            boardId={String(selectedBoardId)}
+            onBoardDeleted={() => setIsDeleteBoardModalOpen(false)}
           />
         </Modal>
       </div>

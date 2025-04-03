@@ -265,6 +265,15 @@ export type CreateBoardMutation = {
   createBoard: { __typename?: "Board"; id: string; name: string };
 };
 
+export type DeleteBoardMutationVariables = Exact<{
+  boardId: Scalars["String"]["input"];
+}>;
+
+export type DeleteBoardMutation = {
+  __typename?: "Mutation";
+  deleteBoard: { __typename?: "Message"; message: string };
+};
+
 export type EditBoardMutationVariables = Exact<{
   data: BoardUpdateInput;
 }>;
@@ -369,6 +378,57 @@ export const CreateBoardDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateBoardMutation, CreateBoardMutationVariables>;
+export const DeleteBoardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteBoard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "boardId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteBoard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "boardId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "boardId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteBoardMutation, DeleteBoardMutationVariables>;
 export const EditBoardDocument = {
   kind: "Document",
   definitions: [
@@ -865,6 +925,15 @@ export type CreateBoardMutationVariables = Exact<{
 export type CreateBoardMutation = {
   __typename?: "Mutation";
   createBoard: { __typename?: "Board"; id: string; name: string };
+};
+
+export type DeleteBoardMutationVariables = Exact<{
+  boardId: Scalars["String"]["input"];
+}>;
+
+export type DeleteBoardMutation = {
+  __typename?: "Mutation";
+  deleteBoard: { __typename?: "Message"; message: string };
 };
 
 export type EditBoardMutationVariables = Exact<{
