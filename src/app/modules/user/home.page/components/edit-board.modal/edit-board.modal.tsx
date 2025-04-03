@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { editBoardStrings } from "./edit-board.strings";
-import { divVariants } from "./edit-board.modal.style";
+import { divVariants } from "./edit-board.style";
 import { useEditBoard } from "./edit-board.use-case";
 import { toast } from "react-toastify";
 
