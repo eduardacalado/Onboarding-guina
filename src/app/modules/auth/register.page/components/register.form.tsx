@@ -5,7 +5,7 @@ import { z } from "zod";
 import { registerStrings } from "../register.strings";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "../register.use-case";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { FeedbackErrorIcon } from "@/app/assets/svg";
 
 const formSchema = z
@@ -38,12 +38,18 @@ export function RegisterForm() {
 
   const { register, loading } = useRegister({
     onCompleted() {
-      toast.success(registerStrings.SuccessMessage);
+      toast(registerStrings.SuccessMessage);
       navigate("/home");
     },
     onError(error) {
-      const errorMessage = error.message || registerStrings.ErrorMessage;
-      toast.error(errorMessage);
+      const errorMessage = error.message;
+      toast(registerStrings.ErrorMessage, {
+        description: errorMessage,
+        action: {
+          label: registerStrings.ctaTryAgain,
+          onClick: () => handleFormSubmit(methods.getValues()),
+        },
+      });
     },
   });
 

@@ -1,6 +1,7 @@
 export const createBoardStrings = {
   successMessage: "Projeto criado com sucesso!",
-  errorMessage: "Erro ao criar projeto, tente novamente",
+  errorMessage: "Erro ao criar projeto",
+  ctaTryAgain: "Tente novamente",
 
   createProjectTitle: "Criar novo projeto",
 

@@ -1,6 +1,7 @@
 export const loginStrings = {
   SuccessMessage: "Login realizado com sucesso!",
-  ErrorMesage: "Erro ao fazer login. Tente novamente",
+  ErrorMesage: "Erro ao fazer login",
+  ctaTryAgain: "Tente novamente",
 
   ctaBackToStart: "Voltar para o início",
 

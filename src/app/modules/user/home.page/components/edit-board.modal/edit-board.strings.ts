@@ -1,6 +1,7 @@
 export const editBoardStrings = {
   successMessage: "Projeto atualizado com sucesso!",
-  errorMessage: "Erro ao criar projeto, tente novamente",
+  errorMessage: "Erro ao criar projeto",
+  ctaTryAgain: "Tente novamente",
 
   editBoardTitle: "Editar nome do projeto",
 

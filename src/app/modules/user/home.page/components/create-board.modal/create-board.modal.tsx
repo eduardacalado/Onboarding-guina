@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCreateBoard } from "../../home.use-case";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { createBoardStrings } from "./create-board.strings";
 import { createBoardDivVariants } from "./create-board.styles";
 
@@ -18,12 +18,18 @@ type CreateBoardModalProps = {
 export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
-      toast.success(createBoardStrings.successMessage);
+      toast(createBoardStrings.successMessage);
       onBoardCreated();
     },
     onError(error) {
-      const errorMessage = error.message || createBoardStrings.errorMessage;
-      toast.error(errorMessage);
+      const errorMessage = error.message;
+      toast(createBoardStrings.errorMessage, {
+        description: errorMessage,
+        action: {
+          label: createBoardStrings.ctaTryAgain,
+          onClick: () => handleFormSubmit(methods.getValues()),
+        },
+      });
     },
   });
 
