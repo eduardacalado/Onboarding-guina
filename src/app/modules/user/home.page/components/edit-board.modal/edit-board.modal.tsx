@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { editBoardStrings } from "./edit-board.strings";
-import { divVariants } from "./edit-board.style";
+import { editBoardDivVariants } from "./edit-board.style";
 import { useEditBoard } from "./edit-board.use-case";
 import { toast } from "react-toastify";
 
@@ -46,13 +46,17 @@ export function EditBoardModal({
 
   return (
     <>
-      <div className={divVariants({ variant: "modalContainer" })}>
-        <div className={divVariants({ variant: "titleContainer" })}>
+      <div className={editBoardDivVariants({ variant: "modalContainer" })}>
+        <div className={editBoardDivVariants({ variant: "titleContainer" })}>
           <Text>{editBoardStrings.editBoardTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div className={divVariants({ variant: "inputFieldContainer" })}>
+            <div
+              className={editBoardDivVariants({
+                variant: "inputFieldContainer",
+              })}
+            >
               <InputField
                 name="name"
                 label={editBoardStrings.input.label}

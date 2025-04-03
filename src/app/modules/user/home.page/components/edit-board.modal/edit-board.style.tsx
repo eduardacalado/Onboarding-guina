@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
 
-export const divVariants = tv({
+export const editBoardDivVariants = tv({
   variants: {
     variant: {
       modalContainer: "flex flex-col w-full gap-lg",

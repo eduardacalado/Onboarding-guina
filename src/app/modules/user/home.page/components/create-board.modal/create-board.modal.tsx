@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useCreateBoard } from "../../home.use-case";
 import { toast } from "react-toastify";
 import { createBoardStrings } from "./create-board.strings";
-import { divVariants } from "./create-board.styles";
+import { createBoardDivVariants } from "./create-board.styles";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
@@ -40,13 +40,17 @@ export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
 
   return (
     <>
-      <div className={divVariants({ variant: "modalContainer" })}>
-        <div className={divVariants({ variant: "titleContainer" })}>
+      <div className={createBoardDivVariants({ variant: "modalContainer" })}>
+        <div className={createBoardDivVariants({ variant: "titleContainer" })}>
           <Text>{createBoardStrings.createProjectTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div className={divVariants({ variant: "inputFieldContainer" })}>
+            <div
+              className={createBoardDivVariants({
+                variant: "inputFieldContainer",
+              })}
+            >
               <InputField
                 name="name"
                 label={createBoardStrings.input.label}
