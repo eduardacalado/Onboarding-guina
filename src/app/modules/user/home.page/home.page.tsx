@@ -59,18 +59,23 @@ export function HomePage() {
 
   function handleNextPage() {
     setCurrentPage(currentPage + 1);
+    refetch();
   }
 
   function handlePreviousPage() {
     setCurrentPage(currentPage - 1);
   }
 
+  function handleToggleCreateBoardModal() {
+    setIsCreateBoardModalOpen(!isCreateBoardModalOpen);
+  }
+
   function handleToggleEditBoardModal() {
     setIsEditBoardModalOpen(!isEditBoardModalOpen);
   }
 
-  function handleToggleCreateBoardModal() {
-    setIsCreateBoardModalOpen(!isCreateBoardModalOpen);
+  function handleToggleDeleteBoardModal() {
+    setIsDeleteBoardModalOpen(!isDeleteBoardModalOpen);
   }
 
   function handleCreateBoard() {
@@ -79,10 +84,20 @@ export function HomePage() {
     refetch();
   }
 
-  const handleEditBoard = (boardId: string) => {
+  function handleEditBoard(boardId: string) {
     handleToggleEditBoardModal();
     setSelectedBoardId(boardId);
-  };
+  }
+
+  function handleDeleteBoard(boardId: string) {
+    handleToggleDeleteBoardModal();
+    setSelectedBoardId(boardId);
+  }
+
+  function handleBoardDeleted() {
+    handleToggleDeleteBoardModal();
+    refetch();
+  }
 
   function renderHomeContent() {
     const isBoardListEmpty = totalBoards.length === 0 && !hasCreatedBoard;
@@ -116,7 +131,7 @@ export function HomePage() {
               key={board.id}
               title={board.name}
               handleOpenEditModal={() => handleEditBoard(board.id)}
-              handleOpenDeleteModal={() => setIsDeleteBoardModalOpen(true)}
+              handleOpenDeleteModal={() => handleDeleteBoard(board.id)}
             />
           ))}
         </div>
@@ -174,12 +189,13 @@ export function HomePage() {
 
         <Modal
           isOpen={isDeleteBoardModalOpen}
-          onClose={() => setIsDeleteBoardModalOpen(false)}
+          onClose={() => handleToggleDeleteBoardModal()}
         >
           <DeleteBoardModal
-            boardName={String(selectedBoard?.name)}
             boardId={String(selectedBoardId)}
-            onBoardDeleted={() => setIsDeleteBoardModalOpen(false)}
+            boardName={String(selectedBoard?.name)}
+            onBoardDeleted={() => handleBoardDeleted()}
+            onClose={() => handleToggleDeleteBoardModal()}
           />
         </Modal>
       </div>
