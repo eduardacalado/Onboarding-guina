@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { CloseIcon } from "@/app/assets/svg";
-import { divVariants } from "./modal.component.style";
+import { modalDivVariants } from "./modal.component.style";
 
 type ModalProps = {
   children: ReactNode;
@@ -16,13 +16,13 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     <>
       {createPortal(
         <div onClick={onClose}>
-          <div className={divVariants({ variant: "darkBackground" })} />
-          <div className={divVariants({ variant: "backgroundDiv" })}>
+          <div className={modalDivVariants({ variant: "darkBackground" })} />
+          <div className={modalDivVariants({ variant: "backgroundDiv" })}>
             <div
-              className={divVariants({ variant: "modal" })}
+              className={modalDivVariants({ variant: "modal" })}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={divVariants({ variant: "closeButtonDiv" })}>
+              <div className={modalDivVariants({ variant: "closeButtonDiv" })}>
                 <button onClick={onClose} className="cursor-pointer">
                   <CloseIcon />
                 </button>

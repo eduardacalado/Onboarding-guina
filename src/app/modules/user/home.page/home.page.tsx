@@ -1,9 +1,4 @@
-import {
-  ChevronLeftIcon,
-  ChevronRight,
-  ImagePlaceholderIcon,
-  PlusIcon,
-} from "@/app/assets/svg";
+import { ChevronLeftIcon, ChevronRight, PlusIcon } from "@/app/assets/svg";
 import { Button, Text, Modal } from "@/app/atomic";
 import { homeStrings } from "./home.strings";
 import { useState } from "react";
@@ -17,7 +12,7 @@ import { EmptyBoardList } from "./components/empty-board-list/empty-board-list.c
 import { EditBoardModal } from "./components/edit-board.modal/edit-board.modal";
 
 type CardProps = {
-  id: number;
+  id: string;
   title: string;
 };
 
@@ -25,18 +20,19 @@ export function HomePage() {
   const [hasCreatedBoard, setHasCreatedBoard] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const limit = 9;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [totalBoards, setBoards] = useState<CardProps[]>([]);
+  const [isCreateBoardModalOpen, setIsCreateBoardModalOpen] = useState(false);
+  const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
+  const [selectedBoardId, setSelectedBoardId] = useState<string>();
+  const [totalBoards, setTotalBoards] = useState<CardProps[]>([]);
   const { boards, loading, refetch } = useBoards({
     variables: {
       pageInput: { limit: limit, offset: (currentPage - 1) * limit },
     },
     onCompleted(data) {
       if (data?.boards?.nodes?.length) {
-        setBoards(
+        setTotalBoards(
           data.boards.nodes.map((board) => ({
-            id: Number(board.id),
+            id: String(board.id),
             title: board.name,
           }))
         );
@@ -49,19 +45,35 @@ export function HomePage() {
   });
   const hasNextPage = boards?.pageInfo?.hasNextPage;
   const hasPreviousPage = boards?.pageInfo?.hasPreviousPage;
+  const selectedBoard = boards?.nodes.find(
+    (board) => board.id === selectedBoardId
+  );
 
-  const handleNextPage = () => {
+  function handleNextPage() {
     setCurrentPage(currentPage + 1);
-  };
+  }
 
-  const handlePreviousPage = () => {
+  function handlePreviousPage() {
     setCurrentPage(currentPage - 1);
-  };
+  }
 
-  const handleCreateBoard = () => {
-    setIsModalOpen(false);
+  function handleToggleEditBoardModal() {
+    setIsEditBoardModalOpen(!isEditBoardModalOpen);
+  }
+
+  function handleToggleCreateBoardModal() {
+    setIsCreateBoardModalOpen(!isCreateBoardModalOpen);
+  }
+
+  function handleCreateBoard() {
+    handleToggleCreateBoardModal();
     setHasCreatedBoard(true);
     refetch();
+  }
+
+  const handleEditBoard = (boardId: string) => {
+    handleToggleEditBoardModal();
+    setSelectedBoardId(boardId);
   };
 
   function renderHomeContent() {
@@ -72,7 +84,11 @@ export function HomePage() {
     }
 
     if (isBoardListEmpty) {
-      return <EmptyBoardList handleOpenModal={() => setIsModalOpen(true)} />;
+      return (
+        <EmptyBoardList
+          handleOpenModal={() => setIsCreateBoardModalOpen(true)}
+        />
+      );
     }
 
     return (
@@ -80,7 +96,7 @@ export function HomePage() {
         <div className="flex flex-wrap justify-start items-stretch gap-lg">
           <button
             className="flex flex-[0_0_265px] flex-col border border-sm border-gray-light rounded-sm items-center justify-center min-w-[247px] min-h-[124px] cursor-pointer"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setIsCreateBoardModalOpen(true)}
           >
             <PlusIcon />
             <span className="text-brand-primary-dark font-bold">
@@ -91,7 +107,7 @@ export function HomePage() {
             <Board
               key={board.id}
               title={board.name}
-              handleModal={() => setIsEditModalOpen(true)}
+              handleModal={() => handleEditBoard(board.id)}
             />
           ))}
         </div>
@@ -129,15 +145,22 @@ export function HomePage() {
       </div>
       <div className="flex flex-col bg-white p-4xl rounded-md gap-lg">
         {renderHomeContent()}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <CreateBoardModal onProjectCreated={handleCreateBoard} />
+        <Modal
+          isOpen={isCreateBoardModalOpen}
+          onClose={() => handleToggleCreateBoardModal()}
+        >
+          <CreateBoardModal onBoardCreated={handleCreateBoard} />
         </Modal>
 
         <Modal
-          isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
+          isOpen={isEditBoardModalOpen}
+          onClose={() => handleToggleEditBoardModal()}
         >
-          <EditBoardModal />
+          <EditBoardModal
+            boardId={String(selectedBoardId)}
+            boardName={String(selectedBoard?.name)}
+            onBoardUpdated={() => handleToggleEditBoardModal()}
+          />
         </Modal>
       </div>
     </div>

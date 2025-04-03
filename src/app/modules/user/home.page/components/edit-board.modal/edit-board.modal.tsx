@@ -3,33 +3,60 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { editBoardStrings } from "./edit-board.strings";
-import { divVariants } from "./edit-board.modal.style";
+import { editBoardDivVariants } from "./edit-board.style";
+import { useEditBoard } from "./edit-board.use-case";
+import { toast } from "react-toastify";
+
+type EditBoardModalProps = {
+  boardId: string;
+  boardName: string;
+  onBoardUpdated: () => void;
+};
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
 });
 
-export function EditBoardModal() {
+export function EditBoardModal({
+  boardId,
+  onBoardUpdated,
+  boardName,
+}: EditBoardModalProps) {
+  const { editBoard, loading } = useEditBoard({
+    onCompleted() {
+      toast.success(editBoardStrings.successMessage);
+      onBoardUpdated();
+    },
+    onError(error) {
+      const errorMessage = error.message || editBoardStrings.errorMessage;
+      toast.error(errorMessage);
+    },
+  });
+
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      name: boardName,
     },
   });
 
   const handleFormSubmit = (formData: { name: string }) => {
-    console.log(formData);
+    editBoard({ data: { id: boardId, name: formData.name } });
   };
 
   return (
     <>
-      <div className={divVariants({ variant: "modalContainer" })}>
-        <div className={divVariants({ variant: "titleContainer" })}>
+      <div className={editBoardDivVariants({ variant: "modalContainer" })}>
+        <div className={editBoardDivVariants({ variant: "titleContainer" })}>
           <Text>{editBoardStrings.editBoardTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div className={divVariants({ variant: "inputFieldContainer" })}>
+            <div
+              className={editBoardDivVariants({
+                variant: "inputFieldContainer",
+              })}
+            >
               <InputField
                 name="name"
                 label={editBoardStrings.input.label}
@@ -37,7 +64,9 @@ export function EditBoardModal() {
                 placeholder={editBoardStrings.input.placeholder}
                 className="flex w-full flex-col gap-sm"
               />
-              <Button type="submit">{editBoardStrings.ctaCreateProject}</Button>
+              <Button type="submit" isLoading={loading}>
+                {editBoardStrings.ctaEditProject}
+              </Button>
             </div>
           </form>
         </FormProvider>

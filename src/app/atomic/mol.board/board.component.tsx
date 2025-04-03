@@ -23,8 +23,12 @@ export function Board({ title, handleModal }: BoardProps) {
           {title}
         </Text>
         <Text variant="body1">Criado em xx/xx/xxx</Text>
-        <div className="flex w-full justify-end" onClick={handleModal}>
-          <button className="cursor-pointer">
+        <div className="flex w-full justify-end">
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleModal}
+          >
             <EditIcon />
           </button>
         </div>

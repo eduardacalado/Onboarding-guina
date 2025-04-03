@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
 
-export const divVariants = tv({
+export const modalDivVariants = tv({
   variants: {
     variant: {
       darkBackground: "fixed inset-0 bg-black opacity-30",

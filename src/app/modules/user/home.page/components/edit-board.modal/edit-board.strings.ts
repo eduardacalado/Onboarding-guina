@@ -1,5 +1,5 @@
 export const editBoardStrings = {
-  successMessage: "Projeto criado com sucesso!",
+  successMessage: "Projeto atualizado com sucesso!",
   errorMessage: "Erro ao criar projeto, tente novamente",
 
   editBoardTitle: "Editar nome do projeto",
@@ -9,5 +9,5 @@ export const editBoardStrings = {
     placeholder: "Digite o novo nome do projeto",
   },
 
-  ctaCreateProject: "Editar projeto",
+  ctaEditProject: "Editar projeto",
 };
