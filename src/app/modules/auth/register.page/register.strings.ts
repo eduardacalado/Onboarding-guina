@@ -1,6 +1,6 @@
 export const registerStrings = {
-  SuccessMessage: "Cadastro realizado com sucesso!",
-  ErrorMessage: "Erro ao cadastrar usuário",
+  successMessage: "Cadastro realizado com sucesso!",
+  errorMessage: "Erro ao cadastrar usuário",
   ctaTryAgain: "Tente novamente",
 
   ctaBackToStart: "Voltar para o início",

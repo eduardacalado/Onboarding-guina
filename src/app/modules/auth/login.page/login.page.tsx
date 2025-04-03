@@ -32,12 +32,12 @@ export function LoginPage() {
 
   const { login, loading } = useLogin({
     onCompleted() {
-      toast(loginStrings.SuccessMessage);
+      toast(loginStrings.successMessage);
       navigate("/home");
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(loginStrings.ErrorMesage, {
+      toast(loginStrings.errorMesage, {
         description: errorMessage,
         action: {
           label: loginStrings.ctaTryAgain,
