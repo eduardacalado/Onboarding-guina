@@ -38,12 +38,12 @@ export function RegisterForm() {
 
   const { register, loading } = useRegister({
     onCompleted() {
-      toast(registerStrings.successMessage);
+      toast.success(registerStrings.successMessage);
       navigate("/home");
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(registerStrings.errorMessage, {
+      toast.error(registerStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: registerStrings.ctaTryAgain,

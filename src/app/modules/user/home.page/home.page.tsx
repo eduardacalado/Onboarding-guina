@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { BoardListSkeleton } from "./components/skeleton/board-list.skeleton";
 import { EmptyBoardList } from "./components/empty-board-list/empty-board-list.component";
 import { EditBoardModal } from "./components/edit-board.modal/edit-board.modal";
+import { DeleteBoardModal } from "./components/delete-board.modal/delete-board.modal";
 
 type CardProps = {
   id: string;
@@ -24,6 +25,7 @@ export function HomePage() {
   const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
   const [selectedBoardId, setSelectedBoardId] = useState<string>();
   const [totalBoards, setTotalBoards] = useState<CardProps[]>([]);
+  const [isDeleteBoardModalOpen, setIsDeleteBoardModalOpen] = useState(false);
   const { boards, loading, refetch } = useBoards({
     variables: {
       pageInput: { limit: limit, offset: (currentPage - 1) * limit },
@@ -40,7 +42,7 @@ export function HomePage() {
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(homeStrings.errorMessage, {
+      toast.error(homeStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: homeStrings.ctaReload,
@@ -57,18 +59,23 @@ export function HomePage() {
 
   function handleNextPage() {
     setCurrentPage(currentPage + 1);
+    refetch();
   }
 
   function handlePreviousPage() {
     setCurrentPage(currentPage - 1);
   }
 
+  function handleToggleCreateBoardModal() {
+    setIsCreateBoardModalOpen(!isCreateBoardModalOpen);
+  }
+
   function handleToggleEditBoardModal() {
     setIsEditBoardModalOpen(!isEditBoardModalOpen);
   }
 
-  function handleToggleCreateBoardModal() {
-    setIsCreateBoardModalOpen(!isCreateBoardModalOpen);
+  function handleToggleDeleteBoardModal() {
+    setIsDeleteBoardModalOpen(!isDeleteBoardModalOpen);
   }
 
   function handleCreateBoard() {
@@ -77,10 +84,20 @@ export function HomePage() {
     refetch();
   }
 
-  const handleEditBoard = (boardId: string) => {
+  function handleEditBoard(boardId: string) {
     handleToggleEditBoardModal();
     setSelectedBoardId(boardId);
-  };
+  }
+
+  function handleDeleteBoard(boardId: string) {
+    handleToggleDeleteBoardModal();
+    setSelectedBoardId(boardId);
+  }
+
+  function handleBoardDeleted() {
+    handleToggleDeleteBoardModal();
+    refetch();
+  }
 
   function renderHomeContent() {
     const isBoardListEmpty = totalBoards.length === 0 && !hasCreatedBoard;
@@ -113,7 +130,8 @@ export function HomePage() {
             <Board
               key={board.id}
               title={board.name}
-              handleModal={() => handleEditBoard(board.id)}
+              handleOpenEditModal={() => handleEditBoard(board.id)}
+              handleOpenDeleteModal={() => handleDeleteBoard(board.id)}
             />
           ))}
         </div>
@@ -166,6 +184,18 @@ export function HomePage() {
             boardId={String(selectedBoardId)}
             boardName={String(selectedBoard?.name)}
             onBoardUpdated={() => handleToggleEditBoardModal()}
+          />
+        </Modal>
+
+        <Modal
+          isOpen={isDeleteBoardModalOpen}
+          onClose={() => handleToggleDeleteBoardModal()}
+        >
+          <DeleteBoardModal
+            boardId={String(selectedBoardId)}
+            boardName={String(selectedBoard?.name)}
+            onBoardDeleted={() => handleBoardDeleted()}
+            onClose={() => handleToggleDeleteBoardModal()}
           />
         </Modal>
       </div>

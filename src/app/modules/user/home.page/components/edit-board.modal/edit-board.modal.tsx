@@ -22,14 +22,16 @@ export function EditBoardModal({
   onBoardUpdated,
   boardName,
 }: EditBoardModalProps) {
+  const { inputFieldContainer, modalContainer, titleContainer } =
+    editBoardDivVariants();
   const { editBoard, loading } = useEditBoard({
     onCompleted() {
-      toast(editBoardStrings.successMessage);
+      toast.success(editBoardStrings.successMessage);
       onBoardUpdated();
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(editBoardStrings.errorMessage, {
+      toast.error(editBoardStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: editBoardStrings.ctaTryAgain,
@@ -52,17 +54,13 @@ export function EditBoardModal({
 
   return (
     <>
-      <div className={editBoardDivVariants({ variant: "modalContainer" })}>
-        <div className={editBoardDivVariants({ variant: "titleContainer" })}>
+      <div className={modalContainer()}>
+        <div className={titleContainer()}>
           <Text>{editBoardStrings.editBoardTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div
-              className={editBoardDivVariants({
-                variant: "inputFieldContainer",
-              })}
-            >
+            <div className={inputFieldContainer()}>
               <InputField
                 name="name"
                 label={editBoardStrings.input.label}

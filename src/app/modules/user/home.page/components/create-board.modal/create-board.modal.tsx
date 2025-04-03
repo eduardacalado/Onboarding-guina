@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useCreateBoard } from "../../home.use-case";
 import { toast } from "sonner";
 import { createBoardStrings } from "./create-board.strings";
-import { createBoardDivVariants } from "./create-board.styles";
+import { createBoardDivVariants } from "./create-board.style";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
@@ -16,14 +16,16 @@ type CreateBoardModalProps = {
 };
 
 export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
+  const { inputFieldContainer, modalContainer, titleContainer } =
+    createBoardDivVariants();
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
-      toast(createBoardStrings.successMessage);
+      toast.success(createBoardStrings.successMessage);
       onBoardCreated();
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(createBoardStrings.errorMessage, {
+      toast.error(createBoardStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: createBoardStrings.ctaTryAgain,
@@ -46,17 +48,13 @@ export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
 
   return (
     <>
-      <div className={createBoardDivVariants({ variant: "modalContainer" })}>
-        <div className={createBoardDivVariants({ variant: "titleContainer" })}>
+      <div className={modalContainer()}>
+        <div className={titleContainer()}>
           <Text>{createBoardStrings.createProjectTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div
-              className={createBoardDivVariants({
-                variant: "inputFieldContainer",
-              })}
-            >
+            <div className={inputFieldContainer()}>
               <InputField
                 name="name"
                 label={createBoardStrings.input.label}
