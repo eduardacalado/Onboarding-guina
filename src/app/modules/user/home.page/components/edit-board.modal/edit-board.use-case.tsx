@@ -18,7 +18,6 @@ export function useEditBoard({ onCompleted, onError }: useEditBoardProps) {
 
   const editBoard = (variables: EditBoardMutationVariables) => {
     editBoardMutation({ variables });
-    // console.log(editBoard);
   };
 
   return { editBoard, loading };
