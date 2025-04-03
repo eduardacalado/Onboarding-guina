@@ -22,6 +22,8 @@ export function EditBoardModal({
   onBoardUpdated,
   boardName,
 }: EditBoardModalProps) {
+  const { inputFieldContainer, modalContainer, titleContainer } =
+    editBoardDivVariants();
   const { editBoard, loading } = useEditBoard({
     onCompleted() {
       toast.success(editBoardStrings.successMessage);
@@ -52,17 +54,13 @@ export function EditBoardModal({
 
   return (
     <>
-      <div className={editBoardDivVariants({ variant: "modalContainer" })}>
-        <div className={editBoardDivVariants({ variant: "titleContainer" })}>
+      <div className={modalContainer()}>
+        <div className={titleContainer()}>
           <Text>{editBoardStrings.editBoardTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div
-              className={editBoardDivVariants({
-                variant: "inputFieldContainer",
-              })}
-            >
+            <div className={inputFieldContainer()}>
               <InputField
                 name="name"
                 label={editBoardStrings.input.label}

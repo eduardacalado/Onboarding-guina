@@ -10,19 +10,26 @@ type ModalProps = {
 };
 
 export function Modal({ isOpen, onClose, children }: ModalProps) {
+  const {
+    backgroundContainer,
+    closeButtonContainer,
+    darkBackground,
+    modalContainer,
+  } = modalDivVariants();
+
   if (!isOpen) return;
 
   return (
     <>
       {createPortal(
         <div onClick={onClose}>
-          <div className={modalDivVariants({ variant: "darkBackground" })} />
-          <div className={modalDivVariants({ variant: "backgroundDiv" })}>
+          <div className={darkBackground()} />
+          <div className={backgroundContainer()}>
             <div
-              className={modalDivVariants({ variant: "modal" })}
+              className={modalContainer()}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={modalDivVariants({ variant: "closeButtonDiv" })}>
+              <div className={closeButtonContainer()}>
                 <button onClick={onClose} className="cursor-pointer">
                   <CloseIcon />
                 </button>

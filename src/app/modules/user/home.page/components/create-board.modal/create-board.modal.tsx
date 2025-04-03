@@ -16,6 +16,8 @@ type CreateBoardModalProps = {
 };
 
 export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
+  const { inputFieldContainer, modalContainer, titleContainer } =
+    createBoardDivVariants();
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
       toast.success(createBoardStrings.successMessage);
@@ -46,17 +48,13 @@ export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
 
   return (
     <>
-      <div className={createBoardDivVariants({ variant: "modalContainer" })}>
-        <div className={createBoardDivVariants({ variant: "titleContainer" })}>
+      <div className={modalContainer()}>
+        <div className={titleContainer()}>
           <Text>{createBoardStrings.createProjectTitle}</Text>
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-            <div
-              className={createBoardDivVariants({
-                variant: "inputFieldContainer",
-              })}
-            >
+            <div className={inputFieldContainer()}>
               <InputField
                 name="name"
                 label={createBoardStrings.input.label}
