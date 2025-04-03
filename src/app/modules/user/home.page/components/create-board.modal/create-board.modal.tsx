@@ -18,12 +18,12 @@ type CreateBoardModalProps = {
 export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
-      toast(createBoardStrings.successMessage);
+      toast.success(createBoardStrings.successMessage);
       onBoardCreated();
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(createBoardStrings.errorMessage, {
+      toast.error(createBoardStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: createBoardStrings.ctaTryAgain,

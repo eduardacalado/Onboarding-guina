@@ -42,7 +42,7 @@ export function HomePage() {
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(homeStrings.errorMessage, {
+      toast.error(homeStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: homeStrings.ctaReload,

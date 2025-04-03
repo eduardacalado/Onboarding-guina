@@ -1,7 +1,7 @@
 import { Button, Text } from "@/app/atomic";
 import { deleteBoardStrings } from "./delete-board.strings";
 import { useDeleteBoard } from "./delete-board.use-case";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { deleteBoardDivVariants } from "./delete-board.style";
 
 type DeleteBoardModalProps = {

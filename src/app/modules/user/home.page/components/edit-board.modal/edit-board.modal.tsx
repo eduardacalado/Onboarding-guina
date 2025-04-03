@@ -24,12 +24,12 @@ export function EditBoardModal({
 }: EditBoardModalProps) {
   const { editBoard, loading } = useEditBoard({
     onCompleted() {
-      toast(editBoardStrings.successMessage);
+      toast.success(editBoardStrings.successMessage);
       onBoardUpdated();
     },
     onError(error) {
       const errorMessage = error.message;
-      toast(editBoardStrings.errorMessage, {
+      toast.error(editBoardStrings.errorMessage, {
         description: errorMessage,
         action: {
           label: editBoardStrings.ctaTryAgain,
