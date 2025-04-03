@@ -10,17 +10,15 @@ const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome do projeto" }),
 });
 
-type CreateProjectModalProps = {
-  onProjectCreated: () => void;
+type CreateBoardModalProps = {
+  onBoardCreated: () => void;
 };
 
-export function CreateBoardModal({
-  onProjectCreated,
-}: CreateProjectModalProps) {
+export function CreateBoardModal({ onBoardCreated }: CreateBoardModalProps) {
   const { createBoard, loading } = useCreateBoard({
     onCompleted() {
       toast.success(createBoardStrings.successMessage);
-      onProjectCreated();
+      onBoardCreated();
     },
     onError(error) {
       const errorMessage = error.message || createBoardStrings.errorMessage;
@@ -52,7 +50,7 @@ export function CreateBoardModal({
                 name="name"
                 label={createBoardStrings.input.label}
                 type="text"
-                placeholder={createBoardStrings.input.label}
+                placeholder={createBoardStrings.input.placeholder}
                 className="flex w-full flex-col gap-sm"
               />
               <Button type="submit" isLoading={loading}>
