@@ -6,7 +6,7 @@ import { CreateBoardModal } from "./components/create-board.modal/create-board.m
 import { Board } from "@/app/atomic/mol.board/board.component";
 import { useBoards } from "../board/board.use-case";
 
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { BoardListSkeleton } from "./components/skeleton/board-list.skeleton";
 import { EmptyBoardList } from "./components/empty-board-list/empty-board-list.component";
 import { EditBoardModal } from "./components/edit-board.modal/edit-board.modal";
@@ -39,8 +39,14 @@ export function HomePage() {
       }
     },
     onError(error) {
-      const errorMessage = error.message || homeStrings.errorMessage;
-      toast.error(errorMessage);
+      const errorMessage = error.message;
+      toast(homeStrings.errorMessage, {
+        description: errorMessage,
+        action: {
+          label: homeStrings.ctaReload,
+          onClick: () => renderHomeContent(),
+        },
+      });
     },
   });
   const hasNextPage = boards?.pageInfo?.hasNextPage;

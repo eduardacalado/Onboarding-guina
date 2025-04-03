@@ -5,7 +5,7 @@ import { z } from "zod";
 import { editBoardStrings } from "./edit-board.strings";
 import { editBoardDivVariants } from "./edit-board.style";
 import { useEditBoard } from "./edit-board.use-case";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 type EditBoardModalProps = {
   boardId: string;
@@ -24,12 +24,18 @@ export function EditBoardModal({
 }: EditBoardModalProps) {
   const { editBoard, loading } = useEditBoard({
     onCompleted() {
-      toast.success(editBoardStrings.successMessage);
+      toast(editBoardStrings.successMessage);
       onBoardUpdated();
     },
     onError(error) {
-      const errorMessage = error.message || editBoardStrings.errorMessage;
-      toast.error(errorMessage);
+      const errorMessage = error.message;
+      toast(editBoardStrings.errorMessage, {
+        description: errorMessage,
+        action: {
+          label: editBoardStrings.ctaTryAgain,
+          onClick: () => handleFormSubmit(methods.getValues()),
+        },
+      });
     },
   });
 

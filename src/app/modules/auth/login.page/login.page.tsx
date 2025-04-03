@@ -12,7 +12,7 @@ import GuinaTeamImage from "../../../assets/svg/guina-team/Image.png";
 import { ArrowLeftIcon, Vector } from "@/app/assets/svg";
 import { loginStrings } from "./login.strings";
 import { useLogin } from "./login.use-case";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
@@ -32,12 +32,18 @@ export function LoginPage() {
 
   const { login, loading } = useLogin({
     onCompleted() {
-      toast.success(loginStrings.SuccessMessage);
+      toast(loginStrings.successMessage);
       navigate("/home");
     },
     onError(error) {
-      const errorMessage = error.message || loginStrings.ErrorMesage;
-      toast.error(errorMessage);
+      const errorMessage = error.message;
+      toast(loginStrings.errorMesage, {
+        description: errorMessage,
+        action: {
+          label: loginStrings.ctaTryAgain,
+          onClick: () => handleFormSubmit(methods.getValues()),
+        },
+      });
     },
   });
 

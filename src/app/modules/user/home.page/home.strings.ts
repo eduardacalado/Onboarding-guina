@@ -1,5 +1,6 @@
 export const homeStrings = {
-  errorMessage: "Erro ao criar projeto. Tente novamente",
+  errorMessage: "Erro ao criar projeto",
+  ctaReload: "Recarregue a página",
 
   headerUsername: "Nome do usuário",
 
