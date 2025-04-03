@@ -2,6 +2,7 @@ import { Button, Text } from "@/app/atomic";
 import { deleteBoardStrings } from "./delete-board.strings";
 import { useDeleteBoard } from "./delete-board.use-case";
 import { toast } from "react-toastify";
+import { deleteBoardDivVariants } from "./delete-board.style";
 
 type DeleteBoardModalProps = {
   boardId: string;
@@ -33,14 +34,16 @@ export function DeleteBoardModal({
 
   return (
     <>
-      <div className="flex flex-col w-full gap-lg">
-        <div className="flex flex-col justify-center">
+      <div className={deleteBoardDivVariants({ variant: "modalContainer" })}>
+        <div className={deleteBoardDivVariants({ variant: "titlesContainer" })}>
           <Text>{deleteBoardStrings.deleteBoardTitle}</Text>
           <Text variant="body1">
             {deleteBoardStrings.deleteBoardSubtitle} "{boardName}"?
           </Text>
         </div>
-        <div className="flex gap-md">
+        <div
+          className={deleteBoardDivVariants({ variant: "buttonsContainer" })}
+        >
           <Button variant="cta" onClick={onClose}>
             {deleteBoardStrings.ctaCancelDeleteBoard}
           </Button>
