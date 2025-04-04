@@ -1,5 +1,4 @@
-import { Text } from "@/app/atomic";
-import { Column } from "@/app/atomic/mol.column/column.component";
+import { Column, Text } from "@/app/atomic";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { useParams } from "react-router-dom";
 import { useQueryBoard } from "./query-board.use-case";
@@ -14,6 +13,7 @@ const columns = [
 export function KanbanPage() {
   const { boardId } = useParams<{ boardId: string }>();
   const { data } = useQueryBoard({ variables: { boardId: boardId || "" } });
+  // const cards = boardData?.board.cards;
 
   return (
     <div className="flex min-h-screen px-[170px] py-xl bg-background-beige justify-center">

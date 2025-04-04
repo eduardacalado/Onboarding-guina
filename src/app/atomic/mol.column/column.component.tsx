@@ -2,6 +2,7 @@ import { PlusIcon } from "@/app/assets/svg";
 import { columnItemsVariants, columnVariants } from "./column.style";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { columnStrings } from "./column.strings";
+import { Card } from "../mol.card/card.component";
 
 type ColumnProps = {
   columnName: string;
@@ -24,7 +25,9 @@ export function Column({ columnName, columnVariant }: ColumnProps) {
           {columnName}
         </div>
       </div>
-      <div className={InnerColumn()} />
+      <div className={InnerColumn()}>
+        <Card />
+      </div>
       <div className={buttonContainer()}>
         <button className={buttonStyle()}>
           <PlusIcon />
