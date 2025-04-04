@@ -309,6 +309,29 @@ export type CreateUserMutation = {
   };
 };
 
+export type QueryBoardQueryVariables = Exact<{
+  boardId: Scalars["String"]["input"];
+}>;
+
+export type QueryBoardQuery = {
+  __typename?: "Query";
+  board: {
+    __typename?: "BoardWithCard";
+    id: string;
+    name: string;
+    cards: Array<{
+      __typename?: "Card";
+      id: string;
+      name: string;
+      description?: string | null;
+      column: CardColumns;
+      createdAt: any;
+      order: number;
+      points?: number | null;
+    }>;
+  };
+};
+
 export type BoardsQueryVariables = Exact<{
   pageInput: PageInput;
 }>;
@@ -598,6 +621,86 @@ export const CreateUserDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const QueryBoardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "QueryBoard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "boardId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "board" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "boardId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "boardId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cards" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "column" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "createdAt" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "order" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "points" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QueryBoardQuery, QueryBoardQueryVariables>;
 export const BoardsDocument = {
   kind: "Document",
   definitions: [
@@ -968,6 +1071,29 @@ export type CreateUserMutation = {
     __typename?: "Login";
     token: string;
     user: { __typename?: "User"; id: string; email: string; name: string };
+  };
+};
+
+export type QueryBoardQueryVariables = Exact<{
+  boardId: Scalars["String"]["input"];
+}>;
+
+export type QueryBoardQuery = {
+  __typename?: "Query";
+  board: {
+    __typename?: "BoardWithCard";
+    id: string;
+    name: string;
+    cards: Array<{
+      __typename?: "Card";
+      id: string;
+      name: string;
+      description?: string | null;
+      column: CardColumns;
+      createdAt: any;
+      order: number;
+      points?: number | null;
+    }>;
   };
 };
 
