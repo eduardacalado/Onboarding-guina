@@ -1,0 +1,15 @@
+query QueryBoard($boardId: String!) {
+  board(boardId: $boardId) {
+    id
+    name
+    cards {
+      id
+      name
+      description
+      column
+      createdAt
+      order
+      points
+    }
+  }
+}
