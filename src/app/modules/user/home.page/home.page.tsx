@@ -4,7 +4,7 @@ import { homeStrings } from "./home.strings";
 import { useState } from "react";
 import { CreateBoardModal } from "./components/create-board.modal/create-board.modal";
 import { Board } from "@/app/atomic/mol.board/board.component";
-import { useBoards } from "../board/board.use-case";
+import { useBoards } from "./board-list.use-case";
 
 import { toast } from "sonner";
 import { BoardListSkeleton } from "./components/skeleton/board-list.skeleton";
@@ -129,6 +129,7 @@ export function HomePage() {
           {boards?.nodes.map((board) => (
             <Board
               key={board.id}
+              boardId={board.id}
               title={board.name}
               handleOpenEditModal={() => handleEditBoard(board.id)}
               handleOpenDeleteModal={() => handleDeleteBoard(board.id)}

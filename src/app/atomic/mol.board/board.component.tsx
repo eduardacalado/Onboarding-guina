@@ -6,19 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 type BoardProps = {
   title: string;
+  boardId: string;
   handleOpenEditModal: () => void;
   handleOpenDeleteModal: () => void;
 };
 
 export function Board({
   title,
+  boardId,
   handleOpenEditModal,
   handleOpenDeleteModal,
 }: BoardProps) {
   const navigate = useNavigate();
 
   function handleNavigateToKanban() {
-    navigate("./home/kanban");
+    navigate(`/home/${boardId}/kanban`);
   }
 
   return (
