@@ -2,7 +2,7 @@ import { Column, Text } from "@/app/atomic";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { useParams } from "react-router-dom";
 import { useQueryBoard } from "./query-board.use-case";
-import { KanbanSkeleton } from "./components/skeleton/board-list.skeleton";
+import { KanbanSkeleton } from "./components/skeleton/kanban.skeleton";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
