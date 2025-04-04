@@ -15,15 +15,13 @@ export function KanbanPage() {
   const { boardId } = useParams<{ boardId: string }>();
   const { data } = useQueryBoard({ variables: { boardId: boardId || "" } });
 
-  console.log(boardId);
-
   return (
-    <div className="flex flex-col justify-center items-center h-screen px-[142px] pb-xl bg-background-beige">
-      <div>
+    <div className="flex min-h-screen px-[170px] py-xl bg-background-beige justify-center">
+      <div className="flex flex-col justify-center w-full">
         <div className="flex pb-xl w-full justify-start">
           <Text>{data?.board.name}</Text>
         </div>
-        <div className="flex gap-lg">
+        <div className="flex w-full h-full justify-between">
           {columns.map((column) => (
             <Column
               key={column.columnVariant}

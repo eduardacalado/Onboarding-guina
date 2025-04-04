@@ -16,9 +16,9 @@ export const columnVariants = tv({
 export const columnItemsVariants = tv({
   slots: {
     columnContainer:
-      "flex flex-col gap-lg justify-center items-center bg-white h-[660px] w-[330px] p-lg rounded-md",
+      "flex flex-col gap-lg justify-center items-center bg-white w-full h-full max-h-[660px] max-w-[330px] p-lg rounded-md",
     columnTypeContainer: "flex justify-start w-full",
-    InnerColumn: "bg-gray-light w-full h-full rounded-sm",
+    InnerColumn: "bg-gray-light w-full overflow-y-auto flex-1 rounded-sm",
     buttonContainer: "flex items-center justify-center",
     buttonStyle: "flex gap-sm cursor-pointer",
     buttonTextStyle: "text-brand-primary-dark font-bold",
