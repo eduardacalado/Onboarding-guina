@@ -9,6 +9,7 @@ import { EyeOffLightIcon } from "./icons/eye-off-light";
 import { EyeOnLightIcon } from "./icons/eye-on-light";
 import { FeedbackErrorIcon } from "./icons/feedback-error";
 import { ImagePlaceholderIcon } from "./icons/image-placeholder";
+import { InformationIcon } from "./icons/information";
 import { InformationDarkIcon } from "./icons/information-dark";
 import { PickerIcon } from "./icons/picker";
 import { PlusIcon } from "./icons/plus";
@@ -27,6 +28,7 @@ export {
   FeedbackErrorIcon,
   ImagePlaceholderIcon,
   InformationDarkIcon,
+  InformationIcon,
   PickerIcon,
   PlusIcon,
   Vector,

@@ -7,6 +7,7 @@ export const imageVariants = tv({
       avatarImage: "w-xxl h-xxl",
       instaqLogo: "w-xxl h-xxl",
       boardImage: "w-full h-full object-cover",
+      cardAvatarImage: "h-md w-md",
     },
   },
 });
