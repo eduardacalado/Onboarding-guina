@@ -2,7 +2,8 @@ import { tv } from "tailwind-variants";
 
 export const cardDivVariants = tv({
   slots: {
-    cardContainer: "flex flex-col gap-md p-md bg-white rounded-sm",
+    cardContainer:
+      "flex flex-col gap-md p-md bg-white rounded-sm cursor-pointer",
     titleUserContainer: "flex flex-col gap-sm",
     userCommentsInfoContainer: "flex gap-xs items-center",
     comentInfoContainer: "flex gap-sm",
