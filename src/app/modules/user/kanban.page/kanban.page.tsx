@@ -12,7 +12,6 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { Card as CardType } from "@/app/data/graphql/generated/graphql";
 import { useEffect, useState } from "react";
-import { getInitialState } from "@dnd-kit/core/dist/store";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -72,23 +71,33 @@ export function KanbanPage() {
     setActiveCard(currentCard);
   }
 
+  function getCardsByColumn(
+    column: CardColumns,
+    cardList: typeof cards = cards
+  ) {
+    return cardList.filter((card) => card.column === column);
+  }
+
+  function getCardsNotInColumn(
+    column: CardColumns,
+    cardList: typeof cards = cards
+  ) {
+    return cardList.filter((card) => card.column !== column);
+  }
+
   function moveCardWithinSameColumn(
-    destinationColumn: CardColumns,
+    targetColumn: CardColumns,
     newIndex: number
   ) {
-    if (!activeCard) return;
-
-    const thisColumnCards = cards.filter(
-      (card) => card.column === destinationColumn
-    );
+    const thisColumnCards = getCardsByColumn(targetColumn);
     const oldIndex = thisColumnCards.findIndex(
-      (card) => card.id === activeCard.id
+      (card) => card.id === activeCard?.id
     );
 
     if (oldIndex !== newIndex) {
       const newColumnCards = arrayMove(thisColumnCards, oldIndex, newIndex);
       const newCards = [
-        ...cards.filter((card) => card.column !== destinationColumn),
+        ...getCardsNotInColumn(targetColumn),
         ...newColumnCards,
       ];
       setCards(newCards);
@@ -96,36 +105,32 @@ export function KanbanPage() {
   }
 
   function moveCardToDifferentColumn(
-    destinationColumn: CardColumns,
+    targetColumn: CardColumns,
     newIndex: number
   ) {
     if (!activeCard) return;
 
-    const updatedCard = {
-      ...activeCard,
-      column: destinationColumn,
-    };
-    const filteredCards = cards.filter((card) => card.id !== activeCard.id);
-    const newColumnCards = filteredCards.filter(
-      (card) => card.column === destinationColumn
+    const updatedCard = { ...activeCard, column: targetColumn };
+    const cardsWithoutActive = cards.filter(
+      (card) => card.id !== activeCard.id
+    );
+    const targetColumnCards = getCardsByColumn(
+      targetColumn,
+      cardsWithoutActive
     );
 
-    newColumnCards.splice(newIndex, 0, updatedCard);
+    targetColumnCards.splice(newIndex, 0, updatedCard);
 
-    const newCards = [
-      ...filteredCards.filter((card) => card.column !== destinationColumn),
-      ...newColumnCards,
-    ];
+    const otherCards = getCardsNotInColumn(targetColumn, cardsWithoutActive);
+    const newCards = [...otherCards, ...targetColumnCards];
     setCards(newCards);
   }
 
   function getNewIndex(
-    destinationColumn: CardColumns,
+    targetColumn: CardColumns,
     over: DragEndEvent["over"]
   ): number {
-    const thisColumnCards = cards.filter(
-      (card) => card.column === destinationColumn
-    );
+    const thisColumnCards = getCardsByColumn(targetColumn);
 
     if (over?.data.current?.sortable) {
       return thisColumnCards.findIndex((card) => card.id === over.id);
@@ -139,14 +144,14 @@ export function KanbanPage() {
     setActiveCard(null);
     if (!over || !activeCard) return;
 
-    const destinationColumn: CardColumns = over.data.current?.column || over.id;
+    const targetColumn: CardColumns = over.data.current?.column || over.id;
 
-    const newIndex = getNewIndex(destinationColumn, over);
+    const newIndex = getNewIndex(targetColumn, over);
 
-    if (activeCard.column === destinationColumn) {
-      moveCardWithinSameColumn(destinationColumn, newIndex);
+    if (activeCard.column === targetColumn) {
+      moveCardWithinSameColumn(targetColumn, newIndex);
     } else {
-      moveCardToDifferentColumn(destinationColumn, newIndex);
+      moveCardToDifferentColumn(targetColumn, newIndex);
     }
   }
 
