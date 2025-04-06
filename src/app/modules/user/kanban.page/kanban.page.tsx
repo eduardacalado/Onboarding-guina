@@ -26,40 +26,11 @@ export function KanbanPage() {
     variables: { boardId: boardId || "" },
   });
 
-  const mockCards = [
-    {
-      id: "5",
-      name: "Revisar código 1",
-      column: CardColumns.InReview,
-      createdAt: new Date().toISOString(),
-      order: 3,
-    },
-    {
-      id: "6",
-      name: "Revisar código 2",
-      column: CardColumns.InReview,
-      createdAt: new Date().toISOString(),
-      order: 3,
-    },
-    {
-      id: "7",
-      name: "Revisar código 3",
-      column: CardColumns.InReview,
-      createdAt: new Date().toISOString(),
-      order: 3,
-    },
-  ];
-
-  const initialCards = data?.board?.cards?.length
-    ? data.board.cards
-    : mockCards;
-
   const [cards, setCards] = useState(data?.board.cards || []);
   const [activeCard, setActiveCard] = useState<CardType | null>(null);
 
   useEffect(() => {
-    setCards(initialCards);
-    // setCards(data?.board.cards || []);
+    setCards(data?.board.cards || []);
   }, [data]);
 
   function handleDragStart(event: DragStartEvent) {
