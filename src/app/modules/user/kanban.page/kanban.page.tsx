@@ -1,4 +1,4 @@
-import { Card, Column, Text } from "@/app/atomic";
+import { Card, Column, Modal, Text } from "@/app/atomic";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { useParams } from "react-router-dom";
 import { useQueryBoard } from "./query-board.use-case";
@@ -12,6 +12,7 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { Card as CardType } from "@/app/data/graphql/generated/graphql";
 import { useEffect, useState } from "react";
+import { CreateCardModal } from "./components/create-card.modal/create-card.modal";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -21,6 +22,7 @@ const columns = [
 ];
 
 export function KanbanPage() {
+  const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
   const { boardId } = useParams<{ boardId: string }>();
   const { data, loading } = useQueryBoard({
     variables: { boardId: boardId || "" },
@@ -126,6 +128,15 @@ export function KanbanPage() {
     }
   }
 
+  function handleToggleCreateCardModal() {
+    setIsCreateCardModalOpen(!isCreateCardModalOpen);
+  }
+
+  function handleCreateCard() {
+    handleToggleCreateCardModal();
+  }
+
+  const cards = data?.board.cards;
   return (
     <div className="flex min-h-screen px-[170px] py-xl bg-background-beige justify-center">
       <div className="flex flex-col justify-center w-full">
@@ -158,6 +169,13 @@ export function KanbanPage() {
             </DndContext>
           </>
         )}
+
+        <Modal
+          isOpen={isCreateCardModalOpen}
+          onClose={() => handleToggleCreateCardModal()}
+        >
+          <CreateCardModal />
+        </Modal>
       </div>
     </div>
   );

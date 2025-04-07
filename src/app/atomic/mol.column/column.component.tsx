@@ -13,10 +13,16 @@ import { useDroppable } from "@dnd-kit/core";
 type ColumnProps = {
   columnName: string;
   columnVariant: CardColumns;
-  cards: CardType[];
+  cards?: CardType[];
+  handleCreateCardModal: () => void;
 };
 
-export function Column({ columnName, columnVariant, cards }: ColumnProps) {
+export function Column({
+  columnName,
+  columnVariant,
+  cards,
+  handleCreateCardModal,
+}: ColumnProps) {
   const {
     buttonStyle,
     buttonContainer,
@@ -48,7 +54,7 @@ export function Column({ columnName, columnVariant, cards }: ColumnProps) {
         </SortableContext>
       </div>
       <div className={buttonContainer()}>
-        <button className={buttonStyle()}>
+        <button className={buttonStyle()} onClick={handleCreateCardModal}>
           <PlusIcon />
           <span className={buttonTextStyle()}>{columnStrings.ctaAddTast}</span>
         </button>
