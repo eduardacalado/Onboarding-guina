@@ -1,5 +1,5 @@
 export const createCardStrings = {
-  succesMessage: "Tarefa criada com sucesso!",
+  successMessage: "Tarefa criada com sucesso!",
 
   createCardTitle: "Criar nova tarefa",
 

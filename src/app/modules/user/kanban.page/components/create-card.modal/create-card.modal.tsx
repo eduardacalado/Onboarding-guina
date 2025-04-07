@@ -22,7 +22,7 @@ export function CreateCardModal() {
   });
 
   const handleFormSubmit = () => {
-    toast.success(createCardStrings.succesMessage);
+    toast.success(createCardStrings.successMessage);
   };
 
   return (
