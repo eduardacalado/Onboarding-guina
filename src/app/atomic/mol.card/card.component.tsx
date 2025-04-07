@@ -2,14 +2,22 @@ import { Text, Image } from "@/app/atomic";
 import AvatarImage from "@/app/assets/svg/avatar/Avatar.png";
 import { EditIcon, InformationIcon } from "@/app/assets/svg";
 import { useUserStore } from "@/app/stores";
-import { Card as CardType } from "@/app/data/graphql/generated/graphql";
+import {
+  Card as CardType,
+  CardColumns,
+} from "@/app/data/graphql/generated/graphql";
 import { cardDivVariants } from "./card.style";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 type CardProps = {
-  card?: CardType;
+  card: CardType;
+  column?: CardColumns;
 };
 
-export function Card({ card }: CardProps) {
+type Visibility = "visible" | "hidden" | "collapse";
+
+export function Card({ card, column }: CardProps) {
   const {
     cardContainer,
     titleUserContainer,
@@ -18,9 +26,32 @@ export function Card({ card }: CardProps) {
   } = cardDivVariants();
   const { name } = useUserStore();
   const date = new Date(card?.createdAt).toLocaleDateString("pt-br");
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: card.id,
+    data: { column },
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    visibility: isDragging ? "hidden" : ("visible" as Visibility),
+  };
 
   return (
-    <div className={cardContainer()}>
+    <div
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      style={style}
+      className={cardContainer()}
+    >
       <div className={titleUserContainer()}>
         <Text variant="heading4" className="font-semibold">
           {card?.name}

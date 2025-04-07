@@ -4,11 +4,16 @@ import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { columnStrings } from "./column.strings";
 import { Card } from "../mol.card/card.component";
 import { Card as CardType } from "@/app/data/graphql/generated/graphql";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useDroppable } from "@dnd-kit/core";
 
 type ColumnProps = {
   columnName: string;
   columnVariant: CardColumns;
-  cards?: CardType[];
+  cards: CardType[];
 };
 
 export function Column({ columnName, columnVariant, cards }: ColumnProps) {
@@ -20,17 +25,27 @@ export function Column({ columnName, columnVariant, cards }: ColumnProps) {
     columnContainer,
     columnTypeContainer,
   } = columnItemsVariants();
+
+  const { setNodeRef } = useDroppable({
+    id: columnVariant,
+  });
+
   return (
-    <div className={columnContainer()}>
+    <div ref={setNodeRef} className={columnContainer()}>
       <div className={columnTypeContainer()}>
         <div className={columnVariants({ status: columnVariant })}>
           {columnName}
         </div>
       </div>
       <div className={InnerColumn()}>
-        {cards?.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
+        <SortableContext
+          items={(cards ?? []).map((card) => card.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          {cards?.map((card: CardType) => (
+            <Card key={card.id} card={card} column={columnVariant} />
+          ))}
+        </SortableContext>
       </div>
       <div className={buttonContainer()}>
         <button className={buttonStyle()}>
