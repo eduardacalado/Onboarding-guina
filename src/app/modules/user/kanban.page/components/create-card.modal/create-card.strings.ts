@@ -7,4 +7,6 @@ export const createCardStrings = {
     label: "Nome da tarefa",
     placeholder: "Digite o nome da tarefa",
   },
+
+  ctaCreateCard: "Criar tarefa",
 };

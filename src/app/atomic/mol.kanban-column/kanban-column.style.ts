@@ -1,7 +1,7 @@
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { tv } from "tailwind-variants";
 
-export const columnVariants = tv({
+export const kanbanColumnVariants = tv({
   base: "rounded-sm px-md py-sm",
   variants: {
     status: {
@@ -13,7 +13,7 @@ export const columnVariants = tv({
   },
 });
 
-export const columnItemsVariants = tv({
+export const KanbanColumnItemsVariants = tv({
   slots: {
     columnContainer:
       "flex flex-col gap-lg justify-center items-center bg-white w-full h-full max-h-[660px] max-w-[340px] p-lg rounded-md",

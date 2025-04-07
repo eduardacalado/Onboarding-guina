@@ -1,7 +1,10 @@
 import { PlusIcon } from "@/app/assets/svg";
-import { columnItemsVariants, columnVariants } from "./column.style";
+import {
+  KanbanColumnItemsVariants,
+  kanbanColumnVariants,
+} from "./kanban-column.style";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
-import { columnStrings } from "./column.strings";
+import { kanbanColumnStrings } from "./kanban-column.strings";
 import { Card } from "../mol.card/card.component";
 import { Card as CardType } from "@/app/data/graphql/generated/graphql";
 import {
@@ -17,7 +20,7 @@ type ColumnProps = {
   handleCreateCardModal: () => void;
 };
 
-export function Column({
+export function KanbanColumn({
   columnName,
   columnVariant,
   cards,
@@ -30,7 +33,7 @@ export function Column({
     InnerColumn,
     columnContainer,
     columnTypeContainer,
-  } = columnItemsVariants();
+  } = KanbanColumnItemsVariants();
 
   const { setNodeRef } = useDroppable({
     id: columnVariant,
@@ -39,7 +42,7 @@ export function Column({
   return (
     <div ref={setNodeRef} className={columnContainer()}>
       <div className={columnTypeContainer()}>
-        <div className={columnVariants({ status: columnVariant })}>
+        <div className={kanbanColumnVariants({ status: columnVariant })}>
           {columnName}
         </div>
       </div>
@@ -56,7 +59,9 @@ export function Column({
       <div className={buttonContainer()}>
         <button className={buttonStyle()} onClick={handleCreateCardModal}>
           <PlusIcon />
-          <span className={buttonTextStyle()}>{columnStrings.ctaAddTast}</span>
+          <span className={buttonTextStyle()}>
+            {kanbanColumnStrings.ctaAddTast}
+          </span>
         </button>
       </div>
     </div>

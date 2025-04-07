@@ -1,4 +1,4 @@
-import { Card, Column, Modal, Text } from "@/app/atomic";
+import { Card, KanbanColumn, Modal, Text } from "@/app/atomic";
 import { CardColumns } from "@/app/data/graphql/generated/graphql";
 import { useParams } from "react-router-dom";
 import { useQueryBoard } from "./query-board.use-case";
@@ -152,7 +152,7 @@ export function KanbanPage() {
             <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
               <div className="flex w-full h-full justify-between">
                 {columns.map((column) => (
-                  <Column
+                  <KanbanColumn
                     key={column.columnVariant}
                     columnName={column.columnName}
                     columnVariant={column.columnVariant}

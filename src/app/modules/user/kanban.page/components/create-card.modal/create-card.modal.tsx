@@ -40,7 +40,7 @@ export function CreateCardModal() {
               placeholder={createCardStrings.input.placeholder}
               className="flex w-full flex-col gap-sm"
             />
-            <Button type="submit">Criard tarefa</Button>
+            <Button type="submit">{createCardStrings.ctaCreateCard}</Button>
           </div>
         </form>
       </FormProvider>
