@@ -265,6 +265,24 @@ export type CreateBoardMutation = {
   createBoard: { __typename?: "Board"; id: string; name: string };
 };
 
+export type CreateCardMutationVariables = Exact<{
+  data: CreateCardInput;
+}>;
+
+export type CreateCardMutation = {
+  __typename?: "Mutation";
+  createCard: {
+    __typename?: "Card";
+    id: string;
+    createdAt: any;
+    name: string;
+    description?: string | null;
+    column: CardColumns;
+    order: number;
+    points?: number | null;
+  };
+};
+
 export type DeleteBoardMutationVariables = Exact<{
   boardId: Scalars["String"]["input"];
 }>;
@@ -401,6 +419,60 @@ export const CreateBoardDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateBoardMutation, CreateBoardMutationVariables>;
+export const CreateCardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CreateCard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "CreateCardInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "createCard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "data" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "column" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "points" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CreateCardMutation, CreateCardMutationVariables>;
 export const DeleteBoardDocument = {
   kind: "Document",
   definitions: [
@@ -1028,6 +1100,24 @@ export type CreateBoardMutationVariables = Exact<{
 export type CreateBoardMutation = {
   __typename?: "Mutation";
   createBoard: { __typename?: "Board"; id: string; name: string };
+};
+
+export type CreateCardMutationVariables = Exact<{
+  data: CreateCardInput;
+}>;
+
+export type CreateCardMutation = {
+  __typename?: "Mutation";
+  createCard: {
+    __typename?: "Card";
+    id: string;
+    createdAt: any;
+    name: string;
+    description?: string | null;
+    column: CardColumns;
+    order: number;
+    points?: number | null;
+  };
 };
 
 export type DeleteBoardMutationVariables = Exact<{
