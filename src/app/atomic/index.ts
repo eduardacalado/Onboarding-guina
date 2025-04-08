@@ -8,8 +8,8 @@ import { Modal } from "./atm.modal/modal.component";
 import { Text } from "./atm.typography/typography.component";
 import { Board } from "./mol.board/board.component";
 import { Card } from "./mol.card/card.component";
-import { Column } from "./mol.column/column.component";
 import { InputField } from "./mol.input-field/Input-field.component";
+import { KanbanColumn } from "./mol.kanban-column/kanban-column.component";
 import { Skeleton } from "./mol.skeleton/skeleton.component";
 
 export {
@@ -17,10 +17,10 @@ export {
   Button,
   Card,
   Checkbox,
-  Column,
   Image,
   Input,
   InputField,
+  KanbanColumn,
   LinkButton,
   LoadingSpinner,
   Modal,

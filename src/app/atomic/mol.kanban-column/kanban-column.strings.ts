@@ -1,3 +1,3 @@
-export const columnStrings = {
+export const kanbanColumnStrings = {
   ctaAddTast: "Adicionar tarefa",
 };
