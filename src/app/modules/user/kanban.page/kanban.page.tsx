@@ -24,13 +24,15 @@ const columns = [
 export function KanbanPage() {
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
   const { boardId } = useParams<{ boardId: string }>();
-  const { data, loading } = useQueryBoard({
+  const { data, loading, refetch } = useQueryBoard({
     variables: { boardId: boardId || "" },
   });
 
   const [cards, setCards] = useState(data?.board.cards || []);
   const [activeCard, setActiveCard] = useState<CardType | null>(null);
-
+  const [createCardColumn, setCreateCardColumn] = useState<CardColumns | null>(
+    null
+  );
   useEffect(() => {
     setCards(data?.board.cards || []);
   }, [data]);
@@ -132,7 +134,8 @@ export function KanbanPage() {
     setIsCreateCardModalOpen(!isCreateCardModalOpen);
   }
 
-  function handleCardCreated() {
+  function handleCreateCard(column: CardColumns) {
+    setCreateCardColumn(column);
     handleToggleCreateCardModal();
   }
 
@@ -158,7 +161,9 @@ export function KanbanPage() {
                     cards={cards?.filter(
                       (card) => card?.column === column?.columnVariant
                     )}
-                    handleCreateCardModal={handleCardCreated}
+                    handleCreateCardModal={() =>
+                      handleCreateCard(column.columnVariant)
+                    }
                   />
                 ))}
               </div>
@@ -170,12 +175,21 @@ export function KanbanPage() {
           </>
         )}
 
-        <Modal
-          isOpen={isCreateCardModalOpen}
-          onClose={() => handleToggleCreateCardModal()}
-        >
-          <CreateCardModal />
-        </Modal>
+        {createCardColumn && (
+          <Modal
+            isOpen={isCreateCardModalOpen}
+            onClose={handleToggleCreateCardModal}
+          >
+            <CreateCardModal
+              onCardCreated={() => {
+                refetch();
+                handleToggleCreateCardModal();
+              }}
+              boardId={boardId || ""}
+              column={createCardColumn}
+            />
+          </Modal>
+        )}
       </div>
     </div>
   );

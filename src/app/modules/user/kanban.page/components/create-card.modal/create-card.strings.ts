@@ -1,5 +1,7 @@
 export const createCardStrings = {
   successMessage: "Tarefa criada com sucesso!",
+  errorMessage: "Erro ao criar tarefa.",
+  ctaTryAgain: "Tente novamente",
 
   createCardTitle: "Criar nova tarefa",
 
