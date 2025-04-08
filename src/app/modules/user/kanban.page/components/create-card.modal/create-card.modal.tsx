@@ -12,6 +12,8 @@ const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome da tarefa" }),
 });
 
+type FormData = z.infer<typeof formSchema>;
+
 type CreateCardModalProps = {
   onCardCreated: () => void;
   boardId: string;
@@ -48,8 +50,6 @@ export function CreateCardModal({
       name: "",
     },
   });
-
-  type FormData = z.infer<typeof formSchema>;
 
   const handleFormSubmit = (data: FormData) => {
     createCard({
