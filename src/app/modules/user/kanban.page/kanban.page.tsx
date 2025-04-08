@@ -136,7 +136,6 @@ export function KanbanPage() {
     handleToggleCreateCardModal();
   }
 
-  const cards = data?.board.cards;
   return (
     <div className="flex min-h-screen px-[170px] py-xl bg-background-beige justify-center">
       <div className="flex flex-col justify-center w-full">
