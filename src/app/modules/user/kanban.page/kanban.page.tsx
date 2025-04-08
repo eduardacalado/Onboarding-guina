@@ -132,7 +132,7 @@ export function KanbanPage() {
     setIsCreateCardModalOpen(!isCreateCardModalOpen);
   }
 
-  function handleCreateCard() {
+  function handleCardCreated() {
     handleToggleCreateCardModal();
   }
 
@@ -158,6 +158,7 @@ export function KanbanPage() {
                     cards={cards?.filter(
                       (card) => card?.column === column?.columnVariant
                     )}
+                    handleCreateCardModal={handleCardCreated}
                   />
                 ))}
               </div>
