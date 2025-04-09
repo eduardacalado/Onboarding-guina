@@ -18,6 +18,7 @@ type ColumnProps = {
   columnVariant: CardColumns;
   cards?: CardType[];
   handleCreateCardModal: () => void;
+  handleUpdateCardModal: (card: CardType) => void;
 };
 
 export function KanbanColumn({
@@ -25,6 +26,7 @@ export function KanbanColumn({
   columnVariant,
   cards,
   handleCreateCardModal,
+  handleUpdateCardModal,
 }: ColumnProps) {
   const {
     buttonStyle,
@@ -52,7 +54,12 @@ export function KanbanColumn({
           strategy={verticalListSortingStrategy}
         >
           {cards?.map((card: CardType) => (
-            <Card key={card.id} card={card} column={columnVariant} />
+            <Card
+              key={card.id}
+              card={card}
+              column={columnVariant}
+              onUpdateButtonClick={() => handleUpdateCardModal(card)}
+            />
           ))}
         </SortableContext>
       </div>

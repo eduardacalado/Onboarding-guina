@@ -13,6 +13,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { Card as CardType } from "@/app/data/graphql/generated/graphql";
 import { useEffect, useState } from "react";
 import { CreateCardModal } from "./components/create-card.modal/create-card.modal";
+import { UpdateCardModal } from "./components/update-card.modal/update-card.modal";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -23,6 +24,7 @@ const columns = [
 
 export function KanbanPage() {
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
+  const [isUpdateCardModalOpen, setIsUpdateCardModalOpen] = useState(false);
   const { boardId } = useParams<{ boardId: string }>();
   const { data, loading, refetch } = useQueryBoard({
     variables: { boardId: boardId || "" },
@@ -134,6 +136,11 @@ export function KanbanPage() {
     setIsCreateCardModalOpen(!isCreateCardModalOpen);
   }
 
+  function handleToggleUpdateCardModal(card?: CardType) {
+    if (card) setActiveCard(card);
+    setIsUpdateCardModalOpen((prev) => !prev);
+  }
+
   function handleCreateCard(column: CardColumns) {
     setCreateCardColumn(column);
     handleToggleCreateCardModal();
@@ -164,6 +171,9 @@ export function KanbanPage() {
                     handleCreateCardModal={() =>
                       handleCreateCard(column.columnVariant)
                     }
+                    handleUpdateCardModal={(card) =>
+                      handleToggleUpdateCardModal(card)
+                    }
                   />
                 ))}
               </div>
@@ -178,7 +188,7 @@ export function KanbanPage() {
         {createCardColumn && (
           <Modal
             isOpen={isCreateCardModalOpen}
-            onClose={handleToggleCreateCardModal}
+            onClose={() => handleToggleCreateCardModal()}
           >
             <CreateCardModal
               onCardCreated={() => {
@@ -190,6 +200,13 @@ export function KanbanPage() {
             />
           </Modal>
         )}
+
+        <Modal
+          isOpen={isUpdateCardModalOpen}
+          onClose={() => handleToggleUpdateCardModal()}
+        >
+          <UpdateCardModal cardName={activeCard?.name || ""} />
+        </Modal>
       </div>
     </div>
   );
