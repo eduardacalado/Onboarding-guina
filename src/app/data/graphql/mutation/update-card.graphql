@@ -1,0 +1,11 @@
+mutation UpdateCard($data: UpdateCardInput!) {
+  updateCard(data: $data) {
+    id
+    name
+    column
+    createdAt
+    description
+    order
+    points
+  }
+}

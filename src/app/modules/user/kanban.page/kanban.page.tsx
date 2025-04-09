@@ -136,7 +136,7 @@ export function KanbanPage() {
     setIsCreateCardModalOpen(!isCreateCardModalOpen);
   }
 
-  function handleToggleUpdateCardModal(card?: CardType) {
+  function handleUpdateCard(card?: CardType) {
     if (card) setActiveCard(card);
     setIsUpdateCardModalOpen((prev) => !prev);
   }
@@ -171,9 +171,7 @@ export function KanbanPage() {
                     handleCreateCardModal={() =>
                       handleCreateCard(column.columnVariant)
                     }
-                    handleUpdateCardModal={(card) =>
-                      handleToggleUpdateCardModal(card)
-                    }
+                    handleUpdateCardModal={(card) => handleUpdateCard(card)}
                   />
                 ))}
               </div>
@@ -203,9 +201,13 @@ export function KanbanPage() {
 
         <Modal
           isOpen={isUpdateCardModalOpen}
-          onClose={() => handleToggleUpdateCardModal()}
+          onClose={() => handleUpdateCard()}
         >
-          <UpdateCardModal cardName={activeCard?.name || ""} />
+          <UpdateCardModal
+            onCardUpdated={() => handleUpdateCard()}
+            cardName={activeCard?.name || ""}
+            cardId={activeCard?.id || ""}
+          />
         </Modal>
       </div>
     </div>
