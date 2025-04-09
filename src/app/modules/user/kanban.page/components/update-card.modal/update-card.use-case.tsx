@@ -11,13 +11,13 @@ type useUpdateCardProps = {
 };
 
 export function useUpdateCard({ onCompleted, onError }: useUpdateCardProps) {
-  const [editBoardMutation, { loading }] = useMutation(UpdateCardDocument, {
+  const [updateCardMutation, { loading }] = useMutation(UpdateCardDocument, {
     onCompleted,
     onError,
   });
 
   const updateCard = (variables: UpdateCardMutationVariables) => {
-    editBoardMutation({ variables });
+    updateCardMutation({ variables });
   };
 
   return { updateCard, loading };
