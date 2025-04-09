@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { updateCardStrings } from "./update-card.strings";
+import { updateCardDivVariants } from "./update-card.style";
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: "Insira o nome da tarefa" }),
@@ -13,6 +15,8 @@ type UpdateCardModalProps = {
 };
 
 export function UpdateCardModal({ cardName }: UpdateCardModalProps) {
+  const { modalContainer, titleContainer, inputFieldContainer } =
+    updateCardDivVariants();
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,21 +28,21 @@ export function UpdateCardModal({ cardName }: UpdateCardModalProps) {
     toast.success("Tarefa");
   };
   return (
-    <div className="flex flex-col w-full gap-lg">
-      <div className="flex justify-center">
-        <Text>Editar nome da tarefa</Text>
+    <div className={modalContainer()}>
+      <div className={titleContainer()}>
+        <Text>{updateCardStrings.updateCardTitle}</Text>
       </div>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(handleFormSubmit)}>
-          <div className="flex flex-col gap-lg">
+          <div className={inputFieldContainer()}>
             <InputField
               name="name"
-              label="Renomear tarefa"
+              label={updateCardStrings.input.label}
               type="text"
-              placeholder="Digite o novo nome da tarefa"
+              placeholder={updateCardStrings.input.placeholder}
               className="flex w-full flex-col gap-sm"
             />
-            <Button type="submit">Editar tarefa</Button>
+            <Button type="submit">{updateCardStrings.ctaUpdateCard}</Button>
           </div>
         </form>
       </FormProvider>
