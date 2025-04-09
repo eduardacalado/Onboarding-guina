@@ -26,15 +26,15 @@ export function UpdateCardModal({
     updateCardDivVariants();
   const { updateCard, loading } = useUpdateCard({
     onCompleted() {
-      toast.success("Tarefa editada com sucesso!");
+      toast.success(updateCardStrings.successMessage);
       onCardUpdated();
     },
     onError(error) {
       const errorMessage = error.message;
-      toast.error("Erro ao editar tarefa", {
+      toast.error(updateCardStrings.errorMessage, {
         description: errorMessage,
         action: {
-          label: "Tente novamente",
+          label: updateCardStrings.ctaTryAgain,
           onClick: () => handleFormSubmit(methods.getValues()),
         },
       });
