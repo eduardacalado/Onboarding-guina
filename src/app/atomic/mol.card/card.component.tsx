@@ -13,11 +13,12 @@ import { CSS } from "@dnd-kit/utilities";
 type CardProps = {
   card: CardType;
   column?: CardColumns;
+  onUpdateButtonClick?: () => void;
 };
 
 type Visibility = "visible" | "hidden" | "collapse";
 
-export function Card({ card, column }: CardProps) {
+export function Card({ card, column, onUpdateButtonClick }: CardProps) {
   const {
     cardContainer,
     titleUserContainer,
@@ -67,7 +68,15 @@ export function Card({ card, column }: CardProps) {
       </div>
       <div className={comentInfoContainer()}>
         <div className={userCommentsInfoContainer()}>
-          <EditIcon size={16} />
+          <button
+            className="cursor-pointer pointer-events-auto"
+            onClick={onUpdateButtonClick}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <EditIcon size={16} />
+          </button>
           <Text variant="body2">0 comentários</Text>
         </div>
         <div className={userCommentsInfoContainer()}>
