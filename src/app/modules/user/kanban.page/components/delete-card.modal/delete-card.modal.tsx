@@ -22,12 +22,11 @@ export function DeleteCardModal({
 
   const { deleteCard, loading } = useDeleteCard({
     onCompleted() {
-      toast.success("Tarefa exluída com sucesso");
+      toast.success(deleteCardStrings.succesMessage);
       onCardDeleted();
     },
     onError(error) {
-      const errorMessage =
-        error.message || "Erro ao excluir tarefa. Tente novamente";
+      const errorMessage = error.message || deleteCardStrings.errorMessage;
       toast.error(errorMessage);
     },
   });
