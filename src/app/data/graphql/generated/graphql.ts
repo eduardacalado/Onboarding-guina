@@ -327,6 +327,24 @@ export type CreateUserMutation = {
   };
 };
 
+export type UpdateCardMutationVariables = Exact<{
+  data: UpdateCardInput;
+}>;
+
+export type UpdateCardMutation = {
+  __typename?: "Mutation";
+  updateCard: {
+    __typename?: "Card";
+    id: string;
+    name: string;
+    column: CardColumns;
+    createdAt: any;
+    description?: string | null;
+    order: number;
+    points?: number | null;
+  };
+};
+
 export type QueryBoardQueryVariables = Exact<{
   boardId: Scalars["String"]["input"];
 }>;
@@ -693,6 +711,60 @@ export const CreateUserDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const UpdateCardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateCard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "UpdateCardInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateCard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "data" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "column" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "points" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateCardMutation, UpdateCardMutationVariables>;
 export const QueryBoardDocument = {
   kind: "Document",
   definitions: [
@@ -1161,6 +1233,24 @@ export type CreateUserMutation = {
     __typename?: "Login";
     token: string;
     user: { __typename?: "User"; id: string; email: string; name: string };
+  };
+};
+
+export type UpdateCardMutationVariables = Exact<{
+  data: UpdateCardInput;
+}>;
+
+export type UpdateCardMutation = {
+  __typename?: "Mutation";
+  updateCard: {
+    __typename?: "Card";
+    id: string;
+    name: string;
+    column: CardColumns;
+    createdAt: any;
+    description?: string | null;
+    order: number;
+    points?: number | null;
   };
 };
 

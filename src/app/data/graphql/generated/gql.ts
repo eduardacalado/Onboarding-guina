@@ -20,6 +20,7 @@ type Documents = {
     "mutation editBoard($data: BoardUpdateInput!) {\n  updateBoard(data: $data) {\n    id\n    name\n  }\n}": typeof types.EditBoardDocument,
     "mutation login($data: LoginInput!) {\n  login(data: $data) {\n    token\n    user {\n      id\n      name\n      email\n    }\n  }\n}": typeof types.LoginDocument,
     "mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}": typeof types.CreateUserDocument,
+    "mutation UpdateCard($data: UpdateCardInput!) {\n  updateCard(data: $data) {\n    id\n    name\n    column\n    createdAt\n    description\n    order\n    points\n  }\n}": typeof types.UpdateCardDocument,
     "query QueryBoard($boardId: String!) {\n  board(boardId: $boardId) {\n    id\n    name\n    cards {\n      id\n      name\n      description\n      column\n      createdAt\n      order\n      points\n    }\n  }\n}": typeof types.QueryBoardDocument,
     "query Boards($pageInput: PageInput!) {\n  boards(pageInput: $pageInput) {\n    nodes {\n      id\n      name\n    }\n    count\n    pageInfo {\n      offset\n      limit\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}": typeof types.BoardsDocument,
 };
@@ -30,6 +31,7 @@ const documents: Documents = {
     "mutation editBoard($data: BoardUpdateInput!) {\n  updateBoard(data: $data) {\n    id\n    name\n  }\n}": types.EditBoardDocument,
     "mutation login($data: LoginInput!) {\n  login(data: $data) {\n    token\n    user {\n      id\n      name\n      email\n    }\n  }\n}": types.LoginDocument,
     "mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}": types.CreateUserDocument,
+    "mutation UpdateCard($data: UpdateCardInput!) {\n  updateCard(data: $data) {\n    id\n    name\n    column\n    createdAt\n    description\n    order\n    points\n  }\n}": types.UpdateCardDocument,
     "query QueryBoard($boardId: String!) {\n  board(boardId: $boardId) {\n    id\n    name\n    cards {\n      id\n      name\n      description\n      column\n      createdAt\n      order\n      points\n    }\n  }\n}": types.QueryBoardDocument,
     "query Boards($pageInput: PageInput!) {\n  boards(pageInput: $pageInput) {\n    nodes {\n      id\n      name\n    }\n    count\n    pageInfo {\n      offset\n      limit\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}": types.BoardsDocument,
 };
@@ -72,6 +74,10 @@ export function graphql(source: "mutation login($data: LoginInput!) {\n  login(d
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}"): (typeof documents)["mutation CreateUser($data: UserInput!) {\n  createUser(data: $data) {\n    token\n    user {\n      id\n      email\n      name\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation UpdateCard($data: UpdateCardInput!) {\n  updateCard(data: $data) {\n    id\n    name\n    column\n    createdAt\n    description\n    order\n    points\n  }\n}"): (typeof documents)["mutation UpdateCard($data: UpdateCardInput!) {\n  updateCard(data: $data) {\n    id\n    name\n    column\n    createdAt\n    description\n    order\n    points\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
