@@ -1,6 +1,6 @@
 import { Text, Image } from "@/app/atomic";
 import AvatarImage from "@/app/assets/svg/avatar/Avatar.png";
-import { EditIcon, InformationIcon } from "@/app/assets/svg";
+import { DeleteIcon, EditIcon, InformationIcon } from "@/app/assets/svg";
 import { useUserStore } from "@/app/stores";
 import {
   Card as CardType,
@@ -13,12 +13,18 @@ import { CSS } from "@dnd-kit/utilities";
 type CardProps = {
   card: CardType;
   column?: CardColumns;
-  onUpdateButtonClick?: () => void;
+  onUpdateCardClick?: () => void;
+  onDeleteCardClick?: () => void;
 };
 
 type Visibility = "visible" | "hidden" | "collapse";
 
-export function Card({ card, column, onUpdateButtonClick }: CardProps) {
+export function Card({
+  card,
+  column,
+  onUpdateCardClick,
+  onDeleteCardClick,
+}: CardProps) {
   const {
     cardContainer,
     titleUserContainer,
@@ -54,9 +60,20 @@ export function Card({ card, column, onUpdateButtonClick }: CardProps) {
       className={cardContainer()}
     >
       <div className={titleUserContainer()}>
-        <Text variant="heading4" className="font-semibold">
-          {card?.name}
-        </Text>
+        <div className="flex flex-row justify-between pointer-events-none">
+          <Text variant="heading4" className="font-semibold">
+            {card?.name}
+          </Text>
+          <button
+            className="cursor-pointer pointer-events-auto"
+            onClick={onDeleteCardClick}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <DeleteIcon size={20} />
+          </button>
+        </div>
         <div className={userCommentsInfoContainer()}>
           <Image
             variant="cardAvatarImage"
@@ -70,7 +87,7 @@ export function Card({ card, column, onUpdateButtonClick }: CardProps) {
         <div className={userCommentsInfoContainer()}>
           <button
             className="cursor-pointer pointer-events-auto"
-            onClick={onUpdateButtonClick}
+            onClick={onUpdateCardClick}
             onPointerDown={(e) => {
               e.stopPropagation();
             }}

@@ -14,6 +14,7 @@ import { Card as CardType } from "@/app/data/graphql/generated/graphql";
 import { useEffect, useState } from "react";
 import { CreateCardModal } from "./components/create-card.modal/create-card.modal";
 import { UpdateCardModal } from "./components/update-card.modal/update-card.modal";
+import { DeleteCardModal } from "./components/delete-card.modal/delete-card.modal";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -25,6 +26,7 @@ const columns = [
 export function KanbanPage() {
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
   const [isUpdateCardModalOpen, setIsUpdateCardModalOpen] = useState(false);
+  const [isDeleteCardModalOpen, setIsDeleteCardModalOpen] = useState(false);
   const { boardId } = useParams<{ boardId: string }>();
   const { data, loading, refetch } = useQueryBoard({
     variables: { boardId: boardId || "" },
@@ -136,14 +138,26 @@ export function KanbanPage() {
     setIsCreateCardModalOpen(!isCreateCardModalOpen);
   }
 
+  function handleToggleUpdateCardModal() {
+    setIsUpdateCardModalOpen(!isUpdateCardModalOpen);
+  }
+
+  function handleToggleDeleteCardModal() {
+    setIsDeleteCardModalOpen(!isDeleteCardModalOpen);
+  }
+
   function handleUpdateCard(card?: CardType) {
     if (card) setActiveCard(card);
-    setIsUpdateCardModalOpen((prev) => !prev);
+    handleToggleUpdateCardModal();
   }
 
   function handleCreateCard(column: CardColumns) {
     setCreateCardColumn(column);
     handleToggleCreateCardModal();
+  }
+
+  function handleDeleteCard() {
+    handleToggleDeleteCardModal();
   }
 
   return (
@@ -172,6 +186,7 @@ export function KanbanPage() {
                       handleCreateCard(column.columnVariant)
                     }
                     handleUpdateCardModal={(card) => handleUpdateCard(card)}
+                    handleDeleteCardModal={() => handleDeleteCard()}
                   />
                 ))}
               </div>
@@ -201,13 +216,20 @@ export function KanbanPage() {
 
         <Modal
           isOpen={isUpdateCardModalOpen}
-          onClose={() => handleUpdateCard()}
+          onClose={() => handleToggleUpdateCardModal()}
         >
           <UpdateCardModal
             onCardUpdated={() => handleUpdateCard()}
             cardName={activeCard?.name || ""}
             cardId={activeCard?.id || ""}
           />
+        </Modal>
+
+        <Modal
+          isOpen={isDeleteCardModalOpen}
+          onClose={() => handleToggleDeleteCardModal()}
+        >
+          <DeleteCardModal />
         </Modal>
       </div>
     </div>
