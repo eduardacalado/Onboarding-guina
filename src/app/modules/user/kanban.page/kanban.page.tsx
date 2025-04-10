@@ -156,8 +156,10 @@ export function KanbanPage() {
     handleToggleCreateCardModal();
   }
 
-  function handleDeleteCard() {
+  function handleDeleteCard(card?: CardType) {
+    if (card) setActiveCard(card);
     handleToggleDeleteCardModal();
+    refetch();
   }
 
   return (
@@ -186,7 +188,7 @@ export function KanbanPage() {
                       handleCreateCard(column.columnVariant)
                     }
                     handleUpdateCardModal={(card) => handleUpdateCard(card)}
-                    handleDeleteCardModal={() => handleDeleteCard()}
+                    handleDeleteCardModal={(card) => handleDeleteCard(card)}
                   />
                 ))}
               </div>
@@ -229,7 +231,12 @@ export function KanbanPage() {
           isOpen={isDeleteCardModalOpen}
           onClose={() => handleToggleDeleteCardModal()}
         >
-          <DeleteCardModal />
+          <DeleteCardModal
+            onCardDeleted={() => handleDeleteCard()}
+            onClose={() => handleToggleDeleteCardModal()}
+            cardId={activeCard?.id || ""}
+            cardName={activeCard?.name || ""}
+          />
         </Modal>
       </div>
     </div>
