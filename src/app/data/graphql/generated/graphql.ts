@@ -292,6 +292,15 @@ export type DeleteBoardMutation = {
   deleteBoard: { __typename?: "Message"; message: string };
 };
 
+export type DeleteCardMutationVariables = Exact<{
+  cardId: Scalars["String"]["input"];
+}>;
+
+export type DeleteCardMutation = {
+  __typename?: "Mutation";
+  deleteCard: string;
+};
+
 export type EditBoardMutationVariables = Exact<{
   data: BoardUpdateInput;
 }>;
@@ -542,6 +551,51 @@ export const DeleteBoardDocument = {
     },
   ],
 } as unknown as DocumentNode<DeleteBoardMutation, DeleteBoardMutationVariables>;
+export const DeleteCardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteCard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cardId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteCard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cardId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cardId" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteCardMutation, DeleteCardMutationVariables>;
 export const EditBoardDocument = {
   kind: "Document",
   definitions: [
@@ -1199,6 +1253,15 @@ export type DeleteBoardMutationVariables = Exact<{
 export type DeleteBoardMutation = {
   __typename?: "Mutation";
   deleteBoard: { __typename?: "Message"; message: string };
+};
+
+export type DeleteCardMutationVariables = Exact<{
+  cardId: Scalars["String"]["input"];
+}>;
+
+export type DeleteCardMutation = {
+  __typename?: "Mutation";
+  deleteCard: string;
 };
 
 export type EditBoardMutationVariables = Exact<{

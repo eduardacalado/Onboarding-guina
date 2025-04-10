@@ -19,7 +19,7 @@ type ColumnProps = {
   cards?: CardType[];
   handleCreateCardModal: () => void;
   handleUpdateCardModal: (card: CardType) => void;
-  handleDeleteCardModal: () => void;
+  handleDeleteCardModal: (card: CardType) => void;
 };
 
 export function KanbanColumn({
@@ -61,7 +61,7 @@ export function KanbanColumn({
               card={card}
               column={columnVariant}
               onUpdateCardClick={() => handleUpdateCardModal(card)}
-              onDeleteCardClick={() => handleDeleteCardModal()}
+              onDeleteCardClick={() => handleDeleteCardModal(card)}
             />
           ))}
         </SortableContext>
