@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { CreateCardModal } from "./components/create-card.modal/create-card.modal";
 import { UpdateCardModal } from "./components/update-card.modal/update-card.modal";
 import { DeleteCardModal } from "./components/delete-card.modal/delete-card.modal";
+import { useUpdateCardOrder } from "./update-card-order.use-case";
+import { useUpdateCard } from "./components/update-card.modal/update-card.use-case";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -31,6 +33,9 @@ export function KanbanPage() {
   const { data, loading, refetch } = useQueryBoard({
     variables: { boardId: boardId || "" },
   });
+
+  const { updateCard } = useUpdateCard({});
+  const { updateCardOrder } = useUpdateCardOrder({});
 
   const [cards, setCards] = useState(data?.board.cards || []);
   const [activeCard, setActiveCard] = useState<CardType | null>(null);
@@ -64,23 +69,65 @@ export function KanbanPage() {
     return cardList.filter((card) => card.column !== column);
   }
 
+  function fetchCardLocation(targetColumn: CardColumns) {
+    if (!activeCard) return;
+
+    const orderedCards = getCardsByColumn(targetColumn);
+
+    const updatedCardsOrder = orderedCards.map((card, index) => ({
+      id: card.id,
+      order: index,
+    }));
+
+    updateCard({
+      data: {
+        id: activeCard.id,
+        name: activeCard.name,
+        column: targetColumn,
+      },
+    });
+
+    updateCardOrder({ data: updatedCardsOrder });
+  }
+
   function moveCardWithinSameColumn(
     targetColumn: CardColumns,
     newIndex: number
   ) {
+    if (!activeCard) return;
+
     const thisColumnCards = getCardsByColumn(targetColumn);
     const oldIndex = thisColumnCards.findIndex(
       (card) => card.id === activeCard?.id
     );
 
+    let newColumnCards = [];
+
     if (oldIndex !== newIndex) {
-      const newColumnCards = arrayMove(thisColumnCards, oldIndex, newIndex);
+      newColumnCards = arrayMove(thisColumnCards, oldIndex, newIndex);
       const newCards = [
         ...getCardsNotInColumn(targetColumn),
         ...newColumnCards,
       ];
       setCards(newCards);
     }
+
+    const updatedCardsOrder = newColumnCards.map((card, index) => ({
+      id: card.id,
+      order: index,
+    }));
+
+    console.log(updatedCardsOrder);
+
+    // updateCard({
+    //   data: {
+    //     id: activeCard.id,
+    //     name: activeCard.name,
+    //     column: targetColumn,
+    //   },
+    // });
+
+    updateCardOrder({ data: updatedCardsOrder });
   }
 
   function moveCardToDifferentColumn(
@@ -103,6 +150,8 @@ export function KanbanPage() {
     const otherCards = getCardsNotInColumn(targetColumn, cardsWithoutActive);
     const newCards = [...otherCards, ...targetColumnCards];
     setCards(newCards);
+
+    fetchCardLocation(targetColumn);
   }
 
   function getNewIndex(
