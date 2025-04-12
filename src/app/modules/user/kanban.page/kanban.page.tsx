@@ -17,6 +17,7 @@ import { UpdateCardModal } from "./components/update-card.modal/update-card.moda
 import { DeleteCardModal } from "./components/delete-card.modal/delete-card.modal";
 import { useUpdateCardOrder } from "./update-card-order.use-case";
 import { useUpdateCard } from "./components/update-card.modal/update-card.use-case";
+import { toast } from "sonner";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -34,7 +35,12 @@ export function KanbanPage() {
     variables: { boardId: boardId || "" },
   });
 
-  const { updateCard } = useUpdateCard({});
+  const { updateCard } = useUpdateCard({
+    onError(error) {
+      const errorMessage = error.message;
+      toast.error(errorMessage || "Falha ao mudar tarefa. Tente novamente");
+    },
+  });
   const { updateCardOrder } = useUpdateCardOrder({});
 
   const [cards, setCards] = useState(data?.board.cards || []);
@@ -42,9 +48,6 @@ export function KanbanPage() {
   const [createCardColumn, setCreateCardColumn] = useState<CardColumns | null>(
     null
   );
-  useEffect(() => {
-    setCards(data?.board.cards || []);
-  }, [data]);
 
   function handleDragStart(event: DragStartEvent) {
     const { active } = event;
@@ -69,14 +72,14 @@ export function KanbanPage() {
     return cardList.filter((card) => card.column !== column);
   }
 
-  function fetchCardLocation(targetColumn: CardColumns) {
+  function fetchCardLocation(targetColumn: CardColumns, newIndex: number) {
     if (!activeCard) return;
 
     const orderedCards = getCardsByColumn(targetColumn);
 
-    const updatedCardsOrder = orderedCards.map((card, index) => ({
+    const updatedCardsOrder = orderedCards.map((card) => ({
       id: card.id,
-      order: index,
+      order: 0,
     }));
 
     updateCard({
@@ -87,7 +90,14 @@ export function KanbanPage() {
       },
     });
 
-    updateCardOrder({ data: updatedCardsOrder });
+    const updatedCardOrderData = [
+      ...updatedCardsOrder,
+      { id: activeCard.id, order: newIndex },
+    ];
+
+    updateCardOrder({
+      data: updatedCardOrderData,
+    });
   }
 
   function moveCardWithinSameColumn(
@@ -101,7 +111,7 @@ export function KanbanPage() {
       (card) => card.id === activeCard?.id
     );
 
-    let newColumnCards = [];
+    let newColumnCards = [] as CardType[];
 
     if (oldIndex !== newIndex) {
       newColumnCards = arrayMove(thisColumnCards, oldIndex, newIndex);
@@ -117,16 +127,6 @@ export function KanbanPage() {
       order: index,
     }));
 
-    console.log(updatedCardsOrder);
-
-    // updateCard({
-    //   data: {
-    //     id: activeCard.id,
-    //     name: activeCard.name,
-    //     column: targetColumn,
-    //   },
-    // });
-
     updateCardOrder({ data: updatedCardsOrder });
   }
 
@@ -136,7 +136,11 @@ export function KanbanPage() {
   ) {
     if (!activeCard) return;
 
-    const updatedCard = { ...activeCard, column: targetColumn };
+    const updatedCard = {
+      ...activeCard,
+      column: targetColumn,
+      order: newIndex,
+    };
     const cardsWithoutActive = cards.filter(
       (card) => card.id !== activeCard.id
     );
@@ -145,13 +149,13 @@ export function KanbanPage() {
       cardsWithoutActive
     );
 
-    targetColumnCards.splice(newIndex, 0, updatedCard);
+    targetColumnCards.unshift(updatedCard);
 
     const otherCards = getCardsNotInColumn(targetColumn, cardsWithoutActive);
     const newCards = [...otherCards, ...targetColumnCards];
     setCards(newCards);
 
-    fetchCardLocation(targetColumn);
+    fetchCardLocation(targetColumn, newIndex);
   }
 
   function getNewIndex(
@@ -210,6 +214,14 @@ export function KanbanPage() {
     handleToggleDeleteCardModal();
     refetch();
   }
+
+  useEffect(() => {
+    setCards(data?.board.cards || []);
+  }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <div className="flex min-h-screen px-[170px] py-xl bg-background-beige justify-center">
