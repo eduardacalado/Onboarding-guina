@@ -18,6 +18,7 @@ import { DeleteCardModal } from "./components/delete-card.modal/delete-card.moda
 import { useUpdateCardOrder } from "./update-card-order.use-case";
 import { useUpdateCard } from "./components/update-card.modal/update-card.use-case";
 import { toast } from "sonner";
+import { kanbanStrings } from "./kanban.strings";
 
 const columns = [
   { columnName: "A fazer", columnVariant: CardColumns.ToDo },
@@ -38,10 +39,15 @@ export function KanbanPage() {
   const { updateCard } = useUpdateCard({
     onError(error) {
       const errorMessage = error.message;
-      toast.error(errorMessage || "Falha ao mudar tarefa. Tente novamente");
+      toast.error(errorMessage || kanbanStrings.errorMessage);
     },
   });
-  const { updateCardOrder } = useUpdateCardOrder({});
+  const { updateCardOrder } = useUpdateCardOrder({
+    onError(error) {
+      const errorMessage = error.message;
+      toast.error(errorMessage || kanbanStrings.errorMessage);
+    },
+  });
 
   const [cards, setCards] = useState(data?.board.cards || []);
   const [activeCard, setActiveCard] = useState<CardType | null>(null);
