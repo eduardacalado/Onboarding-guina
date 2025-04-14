@@ -336,6 +336,15 @@ export type CreateUserMutation = {
   };
 };
 
+export type UpdateCardOrderMutationVariables = Exact<{
+  data: Array<UpdateCardOrderInput> | UpdateCardOrderInput;
+}>;
+
+export type UpdateCardOrderMutation = {
+  __typename?: "Mutation";
+  updateCardOrder: string;
+};
+
 export type UpdateCardMutationVariables = Exact<{
   data: UpdateCardInput;
 }>;
@@ -765,6 +774,57 @@ export const CreateUserDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const UpdateCardOrderDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateCardOrder" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "UpdateCardOrderInput" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateCardOrder" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "data" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateCardOrderMutation,
+  UpdateCardOrderMutationVariables
+>;
 export const UpdateCardDocument = {
   kind: "Document",
   definitions: [
@@ -1297,6 +1357,15 @@ export type CreateUserMutation = {
     token: string;
     user: { __typename?: "User"; id: string; email: string; name: string };
   };
+};
+
+export type UpdateCardOrderMutationVariables = Exact<{
+  data: Array<UpdateCardOrderInput> | UpdateCardOrderInput;
+}>;
+
+export type UpdateCardOrderMutation = {
+  __typename?: "Mutation";
+  updateCardOrder: string;
 };
 
 export type UpdateCardMutationVariables = Exact<{
